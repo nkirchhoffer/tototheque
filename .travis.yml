@@ -1,0 +1,41 @@
+# Deux langages sont nécessaires pour intégrer ce projet
+# Une matrice permet l'usage de plusieurs "jobs"
+# incluant : 1 job PHP et 1 job JavaScript (NodeJS)
+matrix:
+  include:
+    - language: php
+
+      # PHP 7.3 est nécessaire pour Laravel
+      php: '7.3'
+      
+      # MariaDB sera utilisé en version 10.3 pour héberger la base de données
+      # pendant les tests
+      addons:
+        mariadb: '10.3'
+
+      # On crée notre base de données de test
+      before_install:
+        - mysql -e "CREATE DATABASE tototheque;"
+
+      # Installation des dépendances avec Composer
+      before_script:
+        - composer install
+
+      # Exécution de la pipeline en elle-même
+      script:
+        - php artisan key:generate
+        - php artisan migrate
+        - php artisan db:seed
+        - ./vendor/phpunit/phpunit/phpunit
+    - language: node_js
+
+      # Version NodeJS recommandée
+      node_js: '10.15.3'
+
+      # Installation des dépendances
+      before_script:
+        - yarn install
+
+      # Exécution de la pipeline
+      script:
+        - npm run production
