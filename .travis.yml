@@ -19,6 +19,7 @@ matrix:
 
       # Installation des dépendances avec Composer
       before_script:
+        - cp .env.ci .env
         - composer install
 
       # Exécution de la pipeline en elle-même
