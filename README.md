@@ -1,6 +1,6 @@
 # Totothèque
 
-[![Build Status](https://travis-ci.com/nkirchhoffer/tototheque.svg?token=ds33jhx1yuxm7ARdHprK&branch=master)](https://travis-ci.com/nkirchhoffer/tototheque)
+[![Build Status](https://travis-ci.com/nkirchhoffer/tototheque.svg?token=ds33jhx1yuxm7ARdHprK&branch=master)](https://travis-ci.com/nkirchhoffer/tototheque)[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnkirchhoffer%2Ftototheque.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnkirchhoffer%2Ftototheque?ref=badge_shield)
 
 Totothèque est un projet écrit en PHP principalement, sous Laravel, dont le principe est de fournir un site de bibliothèque ainsi que son interface de gestion.
 
@@ -20,11 +20,13 @@ Le reste des charges sera détaillé davantage et la planification concrète ser
 
 ## Déploiement
 
-Le projet est indexé sur Travis CI et est constamment reconstruit et déployé en direct.
+Le projet est indexé sur [Travis CI](https://travis-ci.com) et est constamment reconstruit et déployé en direct.
 
 Dans le cadre actuel de ce projet, seul un environnement de staging est mis à disposition de l'équipe de développement, celui-ci est entièrement automatisé grâce au processus de Continuous Integration (et Continuous Deployment).
 
-Les détails de ces compilation et déploiement sont disponibles au travers des fichiers .travis.yml et Dockerfile, ainsi que deploy.sh.
+Les détails de ces compilation et déploiement sont disponibles au travers des fichiers `.travis.yml` et `Dockerfile`, ainsi que `deploy.sh`.
+
+Les images Docker sont hébergées sur [Docker Hub](https://hub.docker.com).
 
 Le déploiement final est propulsé par Caddy Web Server et NGINX Ingress sous Kubernetes permettant une balance de la charge tout en gardant une configuration simple au niveau de notre application. Il est de la tâche du DevOps de configurer le load-balancer NGINX Ingress dans le cadre des déploiements.
 
@@ -43,17 +45,21 @@ Les fichiers YAML de déploiement seront disponibles sur un répertoire Git adap
 
 L'étiquette `build`disponible en haut de ce document renseigne sur l'état actuel du projet, en cas de `failed`, la version actuelle n'est pas déployée sur les serveurs.
 
-## Équipe de développement
+## Contributeurs
 
-L'équipe est actuellement composée de trois personnes, consistant le groupe de projet tutoré au sein de notre formation, que voici :
+Les contributeurs actuels de ce projet sont les suivants :
 
 * Nicolas Kirchhoffer, développeur PHP/JS et DevOps de ce projet
 * Théo Ramstein, intégrateur HTML/CSS et designer
 * Ayoub Khafallah, développeur JS et PHP
 
-Celle-ci n'est pas vouée à changer tant que ce projet reste du domaine scolaire, mais une migration du projet est possible et les contributions seront de ce fait les bienvenues.
+Les contributions ne sont pour l'instant pas acceptées, le projet étant scolaire et encore sous évaluation. Cette politique peut être vouée à changer dans le futur.
 
 ## Licence
 
-Ce projet est sous licence MIT, que vous pourrez retrouver dans le fichier `LICENSE.md`.
+Ce projet est sous licence MIT, que vous pourrez retrouver dans le fichier `LICENSE`.
+
+Les licences sont scannées en temps réel grâce à l'outil [Fossa](https://fossa.com).
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnkirchhoffer%2Ftototheque.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnkirchhoffer%2Ftototheque?ref=badge_large)
 
