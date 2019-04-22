@@ -3,7 +3,7 @@
 FROM php:7.3-fpm
 
 # Ajout des fichiers du dépôt dans /var/www/html
-ADD . /var/www/html
+COPY . /var/www/html
 
 # Autoriser l'exécution sur deploy.sh
 RUN chmod +x deploy.sh

@@ -8,13 +8,13 @@ Conduit dans le cadre des cours en DUT Réseaux et télécommunications, ce proj
 
 Les charges principales sont les suivantes :
 
-  - [ ] Gérer le personnel de la bibliothèque
-  - [ ] Gérer les ouvrages de la bibliothèque
-  - [ ] Avoir un aperçu en direct des emprunts en cours de la bibliothèque
-  - [ ] Afficher les ouvrages et proposer un aperçu individuel
-  - [ ] Disposer d'un espace membre
-  - [ ] Pour les membres, proposer d'emprunter un ouvrage
-  - [ ] Actualiser l'affichage en fonction des disponibilités
+- [ ] Gérer le personnel de la bibliothèque
+- [ ] Gérer les ouvrages de la bibliothèque
+- [ ] Avoir un aperçu en direct des emprunts en cours de la bibliothèque
+- [ ] Afficher les ouvrages et proposer un aperçu individuel
+- [ ] Disposer d'un espace membre
+- [ ] Pour les membres, proposer d'emprunter un ouvrage
+- [ ] Actualiser l'affichage en fonction des disponibilités
 
 Le reste des charges sera détaillé davantage et la planification concrète sera effectuée dans le but d'une restitution par dossier et orale de nos travaux.
 
@@ -32,10 +32,10 @@ Le déploiement final est propulsé par Caddy Web Server et NGINX Ingress sous K
 
 L'intérêt de nos pipelines est :
 
-  - installer les dépendances du projet
-  - lancer les tests unitaires via PHPUnit et avec NPM
-  - compiler l'application dans une image Docker
-  - publier l'image Docker sur un registre privé
+- installer les dépendances du projet
+- lancer les tests unitaires via PHPUnit et avec NPM
+- compiler l'application dans une image Docker
+- publier l'image Docker sur un registre privé
 
 Le cluster Kubernetes écoutera les mises à jour des images Docker et les effectuera dès que nécessaire en fonction de la politique de déploiement, à terme, deux environnements, `staging`et `production`seront déployés sur les serveurs.
 
@@ -49,9 +49,9 @@ L'étiquette `build`disponible en haut de ce document renseigne sur l'état actu
 
 Les contributeurs actuels de ce projet sont les suivants :
 
-  - Nicolas Kirchhoffer, développeur PHP/JS et DevOps de ce projet
-  - Théo Ramstein, intégrateur HTML/CSS et designer
-  - Ayoub Khafallah, développeur JS et PHP
+- Nicolas Kirchhoffer, développeur PHP/JS et DevOps de ce projet
+- Théo Ramstein, intégrateur HTML/CSS et designer
+- Ayoub Khafallah, développeur JS et PHP
 
 Les contributions ne sont pour l'instant pas acceptées, le projet étant scolaire et encore sous évaluation. Cette politique peut être vouée à changer dans le futur.
 
