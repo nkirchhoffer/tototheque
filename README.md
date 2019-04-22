@@ -1,6 +1,6 @@
 # Totothèque
 
-[![Build Status](https://travis-ci.com/nkirchhoffer/tototheque.svg?token=ds33jhx1yuxm7ARdHprK&branch=master)](https://travis-ci.com/nkirchhoffer/tototheque)[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnkirchhoffer%2Ftototheque.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnkirchhoffer%2Ftototheque?ref=badge_shield)
+[![Build Status](https://travis-ci.com/nkirchhoffer/tototheque.svg?token=ds33jhx1yuxm7ARdHprK&branch=master)](https://travis-ci.com/nkirchhoffer/tototheque) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnkirchhoffer%2Ftototheque.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnkirchhoffer%2Ftototheque?ref=badge_shield) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e742f20d1f2f49c39261bcf78ed472cc)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nkirchhoffer/tototheque&amp;utm_campaign=Badge_Grade)
 
 Totothèque est un projet écrit en PHP principalement, sous Laravel, dont le principe est de fournir un site de bibliothèque ainsi que son interface de gestion.
 
