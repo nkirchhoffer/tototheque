@@ -45,5 +45,8 @@ matrix:
       services:
         - docker
       
+      before_script:
+        - chmod +x docker.sh
+
       script: ./docker.sh
         
