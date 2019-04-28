@@ -40,12 +40,16 @@ matrix:
       # Exécution de la pipeline
       script:
         - npm run production
-    - services:
-        - docker
-      
-      before_script:
-        - docker build -t nkirchho/tototheque .
-        - docker login --username "$DOCKER_USERNAME" --password "$DOCKER_PASSWORD"
+build:
+  services:
+    - docker
+  script:
+    - docker build -t nkirchho/tototheque .
 
-      script:
-        - docker push nkirchho/tototheque
+deploy:
+  services:
+    - docker
+  provider: script
+  script: bash docker.sh
+  on:
+    branch: master
