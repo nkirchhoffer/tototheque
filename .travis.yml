@@ -27,7 +27,7 @@ matrix:
         - php artisan key:generate
         - php artisan migrate
         - php artisan db:seed
-        - ./vendor/phpunit/phpunit/phpunit
+        - ./vendor/bin/phpunit
     - language: node_js
 
       # Version NodeJS recommandée

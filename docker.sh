@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 docker push ${DOCKER_REPOSITORY}:${TRAVIS_COMMIT}
 docker tag -f ${DOCKER_REPOSITORY}:${TRAVIS_COMMIT} ${DOCKER_REPOSITORY}
 docker push ${DOCKER_REPOSITORY}
