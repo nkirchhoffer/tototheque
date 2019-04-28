@@ -45,7 +45,7 @@ matrix:
       
       before_script:
         - docker build -t nkirchho/tototheque .
-        - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
       script:
         - docker push nkirchho/tototheque
