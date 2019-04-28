@@ -40,16 +40,10 @@ matrix:
       # Exécution de la pipeline
       script:
         - npm run production
-build:
-  services:
-    - docker
-  script:
-    - docker build -t nkirchho/tototheque .
+    - language: bash
 
-deploy:
-  services:
-    - docker
-  provider: script
-  script: bash docker.sh
-  on:
-    branch: master
+      services:
+        - docker
+      
+      script: ./docker.sh
+        
