@@ -1,7 +1,10 @@
+import Vue from 'vue'
+
+import router from './router'
+import store from './store'
+
 new Vue({
     el: '#app',
-    
-    mounted() {
-        console.log('Hello World !')
-    }
+    router,
+    store
 })
