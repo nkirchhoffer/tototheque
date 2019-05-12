@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="{{ config('locale') }}">
+<html lang="{{ config('app.locale') }}">
 
 <head>
     <title>Totothèque - Accueil</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 
 <body>
     <div id="app">
-        <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+        <nav class="navbar is-black" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="https://bulma.io">
                     Logo
@@ -24,9 +26,7 @@
 
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-start">
-                    <a class="navbar-item">
-                        Accueil
-                    </a>
+                    <router-link :to="{ name: 'home' }" class="navbar-item">Accueil</router-link>
 
                     <a class="navbar-item">
                         Catégories
@@ -58,10 +58,10 @@
                 <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons">
-                            <a class="button is-primary">
+                            <a class="button is-black">
                                 <strong>Sign up</strong>
                             </a>
-                            <a class="button is-light">
+                            <a class="button is-black">
                                 Log in
                             </a>
                         </div>
@@ -69,11 +69,11 @@
                 </div>
             </div>
         </nav>
-    </div>
 
-    <section class="container">
-        <router-view></router-view>
-    </section>
+        <section class="container">
+            <router-view></router-view>
+        </section>
+    </div>
 
     <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
 </body>
