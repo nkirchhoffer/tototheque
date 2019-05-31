@@ -2,7 +2,7 @@
 <html lang="{{ config('app.locale') }}">
 
 <head>
-    <title>Totothèque - Accueil</title>
+    <title>Totothèque - {{ $title }}</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -11,7 +11,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar is-black" role="navigation" aria-label="main navigation">
+        <!-- <nav class="navbar is-black" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="https://bulma.io">
                     Logo
@@ -68,11 +68,29 @@
                     </div>
                 </div>
             </div>
-        </nav>
+        </nav> -->
 
-        <section class="container">
-            <router-view></router-view>
+        <section class="navigation">
+            <nav class="level">
+                <p class="level-item has-text-centered">
+                    <a class="link is-info">Catégories</a>
+                </p>
+                <p class="level-item has-text-centered">
+                    <a class="link is-info">Auteurs</a>
+                </p>
+                <p class="level-item has-text-centered">
+                    <router-link tag="img" :to="{ name: 'home' }" src="https://bulma.io/images/bulma-logo-white.png" alt="" style="height: 30px; cursor: pointer;"></router-link>
+                </p>
+                <p class="level-item has-text-centered">
+                    <router-link :to="{ name: 'login' }" class="link is-info">Espace membre</router-link>
+                </p>
+                <p class="level-item has-text-centered">
+                    <a class="link is-info">Contact</a>
+                </p>
+            </nav>
         </section>
+
+        <router-view></router-view>
     </div>
 
     <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>

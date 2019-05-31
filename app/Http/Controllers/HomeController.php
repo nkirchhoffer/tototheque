@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 class HomeController extends Controller {
 
     public function index() {
-        return view('home');
+        return view('app', [
+            'title' => 'Bienvenue sur le site'
+        ]);
     }
 
 }

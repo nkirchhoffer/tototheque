@@ -1,4 +1,25 @@
 @charset "utf-8";
 @import "~bulma";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
 
-.container { margin-top: 50px; }
+/*
+ * NAVIGATION
+ */
+
+.navigation { 
+    padding: 20px 0 20px 0; 
+    background-color: $black; 
+    color: $white; 
+
+    .level {
+        .level-item {
+            a {
+                color: $white;
+            }
+        }
+    }
+}
+
+.featured > .columns {
+    cursor: pointer;
+}

@@ -4,4 +4,6 @@
  * Front-office routes
  */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('app.home');
+
+Route::get('/member/login', 'LoginController@index')->name('member.login');
