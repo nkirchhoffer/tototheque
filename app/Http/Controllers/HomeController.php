@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-class HomeController extends Controller {
-
-    public function index() {
+class HomeController extends Controller
+{
+    public function index()
+    {
         return view('app', [
-            'title' => 'Bienvenue sur le site'
+            'title' => 'Bienvenue sur le site',
         ]);
     }
-
 }

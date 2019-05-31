@@ -13,12 +13,12 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'Nicolas Kirchhoffer',
-            'nick' => 'nkirchho',
-            'email' => 'kirchhoffer.nicolas@live.fr',
-            'password' => bcrypt('testestest'),
+            'name'       => 'Nicolas Kirchhoffer',
+            'nick'       => 'nkirchho',
+            'email'      => 'kirchhoffer.nicolas@live.fr',
+            'password'   => bcrypt('testestest'),
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ]);
     }
 }
