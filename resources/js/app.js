@@ -5,6 +5,10 @@ import store from './store'
 
 import '@fortawesome/fontawesome-free'
 
+import NotificationComponent from './components/NotificationComponent'
+
+Vue.component('notification', NotificationComponent)
+
 new Vue({
     router,
     store,

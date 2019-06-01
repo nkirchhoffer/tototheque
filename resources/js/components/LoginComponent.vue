@@ -9,6 +9,7 @@
       </div>
     </section>
     <section class="container form">
+      <notification type="error" v-if="error !== null">{{ error }}</notification>       
       <div class="field">
         <p class="control has-icons-left has-icons-right">
           <input class="input" type="email" placeholder="Adresse e-mail" v-model="email" required />
@@ -44,7 +45,8 @@ export default {
   data() {
     return {
       email: null,
-      password: null
+      password: null,
+      error: null
     }
   },
 
@@ -55,18 +57,22 @@ export default {
       const password = this.password
 
       if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-        return alert('adresse mail incorrecte')
+        this.error = 'L\'adresse e-mail renseignée est incorrecte.'
+        return false
       }
 
       if (password.length < 8 || password.length > 64) {
-        return alert('mot de passe ' + (password.length < 8 ? 'trop court' : 'trop long'))
+        this.error = 'Le mot de passe est ' + (password.length < 8 ? 'trop court' : 'trop long')
+        return false
       }
 
       const data = new FormData()
       data.append('email', email)
       data.append('password', password)
 
-      this.$store.dispatch('login', data)
+      this.$store.dispatch('login', data).then(() => {
+        this.$router.push({ name: 'home' })
+      }).catch(error => this.error = error)
 
     }
 

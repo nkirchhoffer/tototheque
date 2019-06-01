@@ -21,10 +21,10 @@ class UserController extends Controller
         $password = $request->get('password');
 
         if (!$this->auth->attempt(['email' => $email, 'password' => $password])) {
-            return response(421)->json([
-                'error'   => 421,
+            return response()->json([
+                'error'   => 401,
                 'message' => 'L\'adresse e-mail ou le mot de passe ne convient pas.',
-            ]);
+            ], 401);
         }
 
         return $this->auth->user();
