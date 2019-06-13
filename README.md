@@ -17,7 +17,7 @@ Les charges principales sont les suivantes :
 - [ ] Gérer les ouvrages de la bibliothèque
 - [ ] Avoir un aperçu en direct des emprunts en cours de la bibliothèque
 - [ ] Afficher les ouvrages et proposer un aperçu individuel
-- [ ] Disposer d'un espace membre
+- [x] Disposer d'un espace membre
 - [ ] Pour les membres, proposer d'emprunter un ouvrage
 - [ ] Actualiser l'affichage en fonction des disponibilités
 
