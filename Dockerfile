@@ -6,7 +6,7 @@ FROM php:7.3-fpm
 COPY . /var/www/html
 
 # Autoriser l'exécution sur deploy.sh
-RUN chmod +x deploy.sh
+RUN chmod +x ./build/deploy.sh
 
 # Exécution de deploy.sh
-CMD ["./deploy.sh"]
+CMD ["./build/deploy.sh"]
