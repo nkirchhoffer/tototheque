@@ -11,84 +11,17 @@
 
 <body>
     <div id="app">
-        <!-- <nav class="navbar is-black" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-                <a class="navbar-item" href="https://bulma.io">
-                    Logo
-                </a>
-
-                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
-
-            <div id="navbarBasicExample" class="navbar-menu">
-                <div class="navbar-start">
-                    <router-link :to="{ name: 'home' }" class="navbar-item">Accueil</router-link>
-
-                    <a class="navbar-item">
-                        Catégories
-                    </a>
-
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link">
-                            À propos
-                        </a>
-
-                        <div class="navbar-dropdown">
-                            <a class="navbar-item">
-                                Emprunts
-                            </a>
-                            <a class="navbar-item">
-                                Devenir membre
-                            </a>
-                            <a class="navbar-item">
-                                Contact
-                            </a>
-                            <hr class="navbar-divider">
-                            <a class="navbar-item">
-                                Report an issue
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="navbar-end">
-                    <div class="navbar-item">
-                        <div class="buttons">
-                            <a class="button is-black">
-                                <strong>Sign up</strong>
-                            </a>
-                            <a class="button is-black">
-                                Log in
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav> -->
-
-        <section class="navigation">
-            <nav class="level">
-                <p class="level-item has-text-centered">
-                    <a class="link is-info">Catégories</a>
-                </p>
-                <p class="level-item has-text-centered">
-                    <a class="link is-info">Auteurs</a>
-                </p>
-                <p class="level-item has-text-centered">
-                    <router-link tag="img" :to="{ name: 'home' }" src="https://bulma.io/images/bulma-logo-white.png" alt="" style="height: 30px; cursor: pointer;"></router-link>
-                </p>
-                <p class="level-item has-text-centered">
-                    <router-link :to="{ name: 'login' }" class="link is-info">Espace membre</router-link>
-                </p>
-                <p class="level-item has-text-centered">
-                    <a class="link is-info">Contact</a>
-                </p>
-            </nav>
-        </section>
+        <ul class="relative bg-gray-900 text-white p-5 flex items-center sticky top-0 opacity-100">
+            <li class="text-2xl mr-6 hover:text-gray-200 ml-64">
+                <a href="#">Totothèque</a>
+            </li>
+            <li class="absolute right-0 mr-64">
+                <a class="inline-block border border-gray-200 rounded py-1 px-3 bg-gray-900 hover:bg-indigo-600 hover:border-indigo-600 text-gray-200" href="#">Se connecter</a>
+            </li>
+            <li class="absolute right-0 mr-32">
+                <a class="inline-block border border-indigo-500 rounded py-1 px-3 bg-indigo-500 hover:bg-indigo-600 hover:border-indigo-600 text-white" href="#">Déconnexion</a>
+            </li>
+        </ul>
 
         <router-view></router-view>
     </div>

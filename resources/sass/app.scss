@@ -1,25 +1,8 @@
-@charset "utf-8";
-@import "~bulma";
-@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/*
- * NAVIGATION
- */
-
-.navigation { 
-    padding: 20px 0 20px 0; 
-    background-color: $black; 
-    color: $white; 
-
-    .level {
-        .level-item {
-            a {
-                color: $white;
-            }
-        }
-    }
-}
-
-.featured > .columns {
-    cursor: pointer;
+.header-brand {
+    height: 250px;
+    overflow: hidden;
 }

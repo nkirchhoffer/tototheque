@@ -39,6 +39,13 @@
   </section>
 </template>
 
+<style>
+  .form {
+    margin-top: 5%;
+  }
+</style>
+
+
 <script>
 
 export default {
