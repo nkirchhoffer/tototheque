@@ -46,6 +46,6 @@ matrix:
         - docker
       
       before_script:
-        - chmod +x ./build/docker.sh
+        - chmod +x ./docker.sh
 
-      script: ./build/docker.sh
+      script: ./docker.sh
