@@ -17,10 +17,10 @@ class CreateBooksTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('description');
-            $table->integer('author_id');
-            $table->integer('category_id');
-            $table->integer('publisher_id');
-            $table->integer('user_id');
+            $table->bigInteger('author_id')->unsigned();
+            $table->bigInteger('category_id')->unsigned();
+            $table->bigInteger('publisher_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamp('published_at');
             $table->timestamps();
             $table->softDeletes();

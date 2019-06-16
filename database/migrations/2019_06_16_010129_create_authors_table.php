@@ -18,7 +18,7 @@ class CreateAuthorsTable extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->text('biography');
-            $table->integer('user_id');
+            $table->bigInteger('user_id')->unsigned();
             $table->string('country_code');
             $table->timestamp('born_at');
             $table->timestamp('died_at')->nullable();
