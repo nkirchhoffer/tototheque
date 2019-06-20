@@ -11,17 +11,24 @@
 
 <body>
     <div id="app">
-        <ul class="relative bg-gray-900 text-white p-5 flex items-center sticky top-0 opacity-100">
-            <li class="text-2xl mr-6 hover:text-gray-200 ml-64">
-                <a href="#">Totothèque</a>
-            </li>
-            <li class="absolute right-0 mr-64">
-                <a class="inline-block border border-gray-200 rounded py-1 px-3 bg-gray-900 hover:bg-indigo-600 hover:border-indigo-600 text-gray-200" href="#">Se connecter</a>
-            </li>
-            <li class="absolute right-0 mr-32">
-                <a class="inline-block border border-indigo-500 rounded py-1 px-3 bg-indigo-500 hover:bg-indigo-600 hover:border-indigo-600 text-white" href="#">Déconnexion</a>
-            </li>
-        </ul>
+        <img id="background" class="object-cover w-full" src="img/background1.jpg">
+
+        <header class="sticky top-0">
+            <!--Navbar-->
+            <ul class="flex bg-white text-white p-5">
+                <li class="flex-1 ml-64 mr-auto text-2xl text-indigo-500">Totothèque</li>
+                <li class="flex-1 ml-32 mr-auto">
+                    <form class="w-full max-w-sm">
+                        <input class="ml-auto mr-auto bg-gray-100 border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:bg-white" id="recherche" type="text" placeholder="Rechercher">
+                    </form>
+                </li>
+                <li class="flex-1 ml-64 mr-auto">
+                    <button class=" border border-indigo-500 rounded py-1 px-3 bg-transparent hover:bg-indigo-600 hover:border-indigo-500 hover:text-white text-indigo-500" href="#">
+                        Se connecter
+                    </button>
+                </li>
+            </ul>
+        </header>
 
         <router-view></router-view>
     </div>

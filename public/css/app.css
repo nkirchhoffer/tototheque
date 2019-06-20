@@ -7556,6 +7556,20 @@ video {
   overflow: hidden;
 }
 
+#background {
+  height: 200px;
+}
+
+#element {
+  width: 1230px;
+  height: 200px;
+}
+
+#couverture {
+  width: auto;
+  height: 400px;
+}
+
 @media (min-width: 640px) {
   .sm\:appearance-none {
     -webkit-appearance: none;

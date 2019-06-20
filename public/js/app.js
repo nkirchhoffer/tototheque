@@ -2553,6 +2553,84 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -4640,62 +4718,279 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    { staticClass: "container", staticStyle: { "margin-top": "30px" } },
-    [
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "home-page" }, [
+      _c("section", { staticClass: "flex content-around" }, [
+        _c(
+          "article",
+          {
+            staticClass:
+              "max-w-sm rounded overflow-hidden shadow-lg mt-10 ml-auto"
+          },
+          [
+            _c("img", {
+              staticClass: "ml-auto mr-auto",
+              attrs: { id: "couverture", src: "/img/livre1.jpg" }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "px-6 py-4" }, [
+              _c(
+                "header",
+                { staticClass: "font-bold text-gray-900 text-xl mb-2" },
+                [_vm._v("Voyage au bout de la nuit")]
+              ),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-gray-700 text-base" }, [
+                _vm._v(
+                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta impedit voluptatem explicabo quia maiores voluptatibus magnam, doloribus accusamus blanditiis ad voluptate repellendus rem corrupti voluptatum praesentium, inventore ratione? Accusamus, illum?"
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("footer", { staticClass: "flex px-6 py-4" }, [
+              _c(
+                "span",
+                {
+                  staticClass:
+                    "flex-1 flex bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                },
+                [
+                  _c("img", {
+                    staticClass: "flex w-6 mr-2",
+                    attrs: { src: "/img/iconfinder_star_1054969.png" }
+                  }),
+                  _vm._v("Nouveauté\n        ")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass:
+                    "flex-1 flex bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                },
+                [
+                  _c("img", {
+                    staticClass: "flex w-6 mr-2",
+                    attrs: { src: "/img/iconfinder_heart_1055045.png" }
+                  }),
+                  _vm._v("Coup de cœur\n        ")
+                ]
+              )
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "article",
+          {
+            staticClass:
+              "max-w-sm rounded overflow-hidden shadow-lg mt-10 ml-10"
+          },
+          [
+            _c("img", {
+              staticClass: "ml-auto mr-auto",
+              attrs: { id: "couverture", src: "/img/livre2.jpg" }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "px-6 py-4" }, [
+              _c(
+                "header",
+                { staticClass: "font-bold text-gray-900 text-xl mb-2" },
+                [_vm._v("La bête humaine")]
+              ),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-gray-700 text-base" }, [
+                _vm._v(
+                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta impedit voluptatem explicabo quia maiores voluptatibus magnam, doloribus accusamus blanditiis ad voluptate repellendus rem corrupti voluptatum praesentium, inventore ratione? Accusamus, illum?"
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("footer", { staticClass: "flex items-stretch px-6 py-4" }, [
+              _c(
+                "span",
+                {
+                  staticClass:
+                    "flex-1 flex bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                },
+                [
+                  _c("img", {
+                    staticClass: "flex w-6 mr-2",
+                    attrs: { src: "/img/iconfinder_star_1054969.png" }
+                  }),
+                  _vm._v("Nouveautés\n        ")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass:
+                    "flex-1 flex bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                },
+                [
+                  _c("img", {
+                    staticClass: "flex w-6 mr-2",
+                    attrs: { src: "/img/iconfinder_heart_1055045.png" }
+                  }),
+                  _vm._v("Coup de cœur\n        ")
+                ]
+              )
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "article",
+          {
+            staticClass:
+              "max-w-sm rounded overflow-hidden shadow-lg mt-10 ml-10 mr-auto"
+          },
+          [
+            _c("img", {
+              staticClass: "ml-auto mr-auto",
+              attrs: { id: "couverture", src: "/img/livre3.jpg" }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "px-6 py-4" }, [
+              _c(
+                "header",
+                { staticClass: "font-bold text-gray-900 text-xl mb-2" },
+                [_vm._v("Notre-Dame de Paris")]
+              ),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-gray-700 text-base" }, [
+                _vm._v(
+                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta impedit voluptatem explicabo quia maiores voluptatibus magnam, doloribus accusamus blanditiis ad voluptate repellendus rem corrupti voluptatum praesentium, inventore ratione? Accusamus, illum?"
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("footer", { staticClass: "flex px-6 py-4" }, [
+              _c(
+                "span",
+                {
+                  staticClass:
+                    "flex-1 flex bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                },
+                [
+                  _c("img", {
+                    staticClass: "flex w-6 mr-2",
+                    attrs: { src: "/img/iconfinder_star_1054969.png" }
+                  }),
+                  _vm._v("Nouveautés\n        ")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass:
+                    "flex-1 flex bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                },
+                [
+                  _c("img", {
+                    staticClass: "flex w-6 mr-2",
+                    attrs: { src: "/img/iconfinder_flame_1055059.png" }
+                  }),
+                  _vm._v("Tendance\n        ")
+                ]
+              )
+            ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
       _c(
         "section",
-        { staticClass: "featured" },
+        {
+          staticClass:
+            "md:flex rounded overflow-hidden shadow-lg mt-10 ml-10 mr-auto ml-auto mb-10",
+          attrs: { id: "element" }
+        },
         [
-          _c("h1", { staticClass: "title is-1" }, [
-            _vm._v("Sélection du mois")
+          _c("img", { staticClass: "w-64", attrs: { src: "/img/img1.jpg" } }),
+          _vm._v(" "),
+          _c("article", { staticClass: "px-6 py-4" }, [
+            _c("header", { staticClass: "font-bold text-xl mb-2" }, [
+              _vm._v("La sélection de l'équipe")
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-gray-700 text-base" }, [
+              _vm._v(
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste doloremque facere, harum, sint earum dignissimos culpa, fugit voluptate ex nam asperiores. Doloremque ullam, exercitationem impedit animi ut officia vel esse?"
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "inline-block mt-4 border border-indigo-500 rounded py-1 px-3 bg-transparent hover:bg-indigo-600 hover:border-indigo-500 hover:text-white text-indigo-500",
+                attrs: { href: "#" }
+              },
+              [_vm._v("Voir l'article")]
+            )
           ]),
           _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "columns notification",
-              attrs: { tag: "section", to: { name: "home" } }
-            },
-            [
-              _c("div", { staticClass: "column cover is-one-fifth" }, [
+          _c("aside", { staticClass: "flex-1 mr-2 mt-auto mb-auto" }, [
+            _c(
+              "span",
+              {
+                staticClass:
+                  "flex w-40 bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mb-3"
+              },
+              [
                 _c("img", {
-                  staticClass: "cover",
-                  attrs: {
-                    src:
-                      "https://img.livraddict.com/covers/170/170570/couv9758842.png",
-                    alt: "Couverture"
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "column" }, [
-                _c("article", { staticClass: "info" }, [
-                  _c("h3", { staticClass: "title is-3" }, [
-                    _vm._v("Voyage au bout de la nuit")
-                  ]),
-                  _vm._v(" "),
-                  _c("h6", { staticClass: "subtitle is-6" }, [
-                    _vm._v("Ferdinand Céline - 1932")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "description" }, [
-                    _vm._v(
-                      "\n            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga cupiditate in omnis quas aliquam doloribus nihil fugit natus. Rem nam iusto necessitatibus cupiditate eos molestias nihil explicabo. Voluptates, maiores autem.\n            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga cupiditate in omnis quas aliquam doloribus nihil fugit natus. Rem nam iusto necessitatibus cupiditate eos molestias nihil explicabo. Voluptates, maiores autem.\n            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga cupiditate in omnis quas aliquam doloribus nihil fugit natus. Rem nam iusto necessitatibus cupiditate eos molestias nihil explicabo. Voluptates, maiores autem.\n            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga cupiditate in omnis quas aliquam doloribus nihil fugit natus. Rem nam iusto necessitatibus cupiditate eos molestias nihil explicabo. Voluptates, maiores autem.\n          "
-                    )
-                  ])
-                ])
-              ])
-            ]
-          )
-        ],
-        1
+                  staticClass: "w-6 mr-2",
+                  attrs: { src: "/img/iconfinder_star_1054969.png" }
+                }),
+                _vm._v("Nouveautés\n      ")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass:
+                  "flex w-40 bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mb-3"
+              },
+              [
+                _c("img", {
+                  staticClass: "w-6 mr-2",
+                  attrs: { src: "/img/iconfinder_flame_1055059.png" }
+                }),
+                _vm._v("Tendance\n      ")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass:
+                  "flex w-40 bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mb-3"
+              },
+              [
+                _c("img", {
+                  staticClass: "w-6 mr-2",
+                  attrs: { src: "/img/iconfinder_megaphone_1055028.png" }
+                }),
+                _vm._v("L'Equipe\n      ")
+              ]
+            )
+          ])
+        ]
       )
-    ]
-  )
-}
-var staticRenderFns = []
+    ])
+  }
+]
 render._withStripped = true
 
 
