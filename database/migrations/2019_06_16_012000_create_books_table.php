@@ -21,6 +21,7 @@ class CreateBooksTable extends Migration
             $table->bigInteger('category_id')->unsigned();
             $table->bigInteger('publisher_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
+            $table->text('cover_url');
             $table->timestamp('published_at');
             $table->timestamps();
             $table->softDeletes();

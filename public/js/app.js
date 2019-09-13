@@ -2523,6 +2523,7 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../http */ "./resources/js/http.js");
 //
 //
 //
@@ -2587,56 +2588,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      books: []
+    };
   },
   mounted: function mounted() {
-    console.log("home");
+    var _this = this;
+
+    _http__WEBPACK_IMPORTED_MODULE_0__["default"].get('/books/all').then(function (res) {
+      res.json().then(function (data) {
+        _this.books = data;
+      });
+    });
   }
 });
 
@@ -4718,20 +4684,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "home-page" }, [
-      _c("section", { staticClass: "flex content-around" }, [
-        _c(
+  return _c("section", { staticClass: "home-page" }, [
+    _c(
+      "section",
+      { staticClass: "flex flex-wrap content-around justify-center w-3/4" },
+      _vm._l(_vm.books, function(book) {
+        return _c(
           "article",
           {
-            staticClass:
-              "max-w-sm rounded overflow-hidden shadow-lg mt-10 ml-auto"
+            key: book.id,
+            staticClass: "rounded overflow-hidden shadow-lg mt-10 w-1/3 m-1"
           },
           [
             _c("img", {
@@ -4743,252 +4705,145 @@ var staticRenderFns = [
               _c(
                 "header",
                 { staticClass: "font-bold text-gray-900 text-xl mb-2" },
-                [_vm._v("Voyage au bout de la nuit")]
+                [_vm._v(_vm._s(book.title))]
               ),
               _vm._v(" "),
               _c("p", { staticClass: "text-gray-700 text-base" }, [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta impedit voluptatem explicabo quia maiores voluptatibus magnam, doloribus accusamus blanditiis ad voluptate repellendus rem corrupti voluptatum praesentium, inventore ratione? Accusamus, illum?"
-                )
+                _vm._v(_vm._s(book.description))
               ])
             ]),
             _vm._v(" "),
-            _c("footer", { staticClass: "flex px-6 py-4" }, [
-              _c(
-                "span",
-                {
-                  staticClass:
-                    "flex-1 flex bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-                },
-                [
-                  _c("img", {
-                    staticClass: "flex w-6 mr-2",
-                    attrs: { src: "/img/iconfinder_star_1054969.png" }
-                  }),
-                  _vm._v("Nouveauté\n        ")
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "span",
-                {
-                  staticClass:
-                    "flex-1 flex bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-                },
-                [
-                  _c("img", {
-                    staticClass: "flex w-6 mr-2",
-                    attrs: { src: "/img/iconfinder_heart_1055045.png" }
-                  }),
-                  _vm._v("Coup de cœur\n        ")
-                ]
-              )
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "article",
-          {
-            staticClass:
-              "max-w-sm rounded overflow-hidden shadow-lg mt-10 ml-10"
-          },
-          [
-            _c("img", {
-              staticClass: "ml-auto mr-auto",
-              attrs: { id: "couverture", src: "/img/livre2.jpg" }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "px-6 py-4" }, [
-              _c(
-                "header",
-                { staticClass: "font-bold text-gray-900 text-xl mb-2" },
-                [_vm._v("La bête humaine")]
-              ),
-              _vm._v(" "),
-              _c("p", { staticClass: "text-gray-700 text-base" }, [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta impedit voluptatem explicabo quia maiores voluptatibus magnam, doloribus accusamus blanditiis ad voluptate repellendus rem corrupti voluptatum praesentium, inventore ratione? Accusamus, illum?"
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("footer", { staticClass: "flex items-stretch px-6 py-4" }, [
-              _c(
-                "span",
-                {
-                  staticClass:
-                    "flex-1 flex bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-                },
-                [
-                  _c("img", {
-                    staticClass: "flex w-6 mr-2",
-                    attrs: { src: "/img/iconfinder_star_1054969.png" }
-                  }),
-                  _vm._v("Nouveautés\n        ")
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "span",
-                {
-                  staticClass:
-                    "flex-1 flex bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-                },
-                [
-                  _c("img", {
-                    staticClass: "flex w-6 mr-2",
-                    attrs: { src: "/img/iconfinder_heart_1055045.png" }
-                  }),
-                  _vm._v("Coup de cœur\n        ")
-                ]
-              )
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "article",
-          {
-            staticClass:
-              "max-w-sm rounded overflow-hidden shadow-lg mt-10 ml-10 mr-auto"
-          },
-          [
-            _c("img", {
-              staticClass: "ml-auto mr-auto",
-              attrs: { id: "couverture", src: "/img/livre3.jpg" }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "px-6 py-4" }, [
-              _c(
-                "header",
-                { staticClass: "font-bold text-gray-900 text-xl mb-2" },
-                [_vm._v("Notre-Dame de Paris")]
-              ),
-              _vm._v(" "),
-              _c("p", { staticClass: "text-gray-700 text-base" }, [
-                _vm._v(
-                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta impedit voluptatem explicabo quia maiores voluptatibus magnam, doloribus accusamus blanditiis ad voluptate repellendus rem corrupti voluptatum praesentium, inventore ratione? Accusamus, illum?"
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("footer", { staticClass: "flex px-6 py-4" }, [
-              _c(
-                "span",
-                {
-                  staticClass:
-                    "flex-1 flex bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-                },
-                [
-                  _c("img", {
-                    staticClass: "flex w-6 mr-2",
-                    attrs: { src: "/img/iconfinder_star_1054969.png" }
-                  }),
-                  _vm._v("Nouveautés\n        ")
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "span",
-                {
-                  staticClass:
-                    "flex-1 flex bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-                },
-                [
-                  _c("img", {
-                    staticClass: "flex w-6 mr-2",
-                    attrs: { src: "/img/iconfinder_flame_1055059.png" }
-                  }),
-                  _vm._v("Tendance\n        ")
-                ]
-              )
-            ])
+            _vm._m(0, true)
           ]
         )
-      ]),
-      _vm._v(" "),
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _vm._m(1)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("footer", { staticClass: "flex px-6 py-4" }, [
       _c(
-        "section",
+        "span",
         {
           staticClass:
-            "md:flex rounded overflow-hidden shadow-lg mt-10 ml-10 mr-auto ml-auto mb-10",
-          attrs: { id: "element" }
+            "flex-1 flex bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
         },
         [
-          _c("img", { staticClass: "w-64", attrs: { src: "/img/img1.jpg" } }),
-          _vm._v(" "),
-          _c("article", { staticClass: "px-6 py-4" }, [
-            _c("header", { staticClass: "font-bold text-xl mb-2" }, [
-              _vm._v("La sélection de l'équipe")
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-gray-700 text-base" }, [
-              _vm._v(
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste doloremque facere, harum, sint earum dignissimos culpa, fugit voluptate ex nam asperiores. Doloremque ullam, exercitationem impedit animi ut officia vel esse?"
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "inline-block mt-4 border border-indigo-500 rounded py-1 px-3 bg-transparent hover:bg-indigo-600 hover:border-indigo-500 hover:text-white text-indigo-500",
-                attrs: { href: "#" }
-              },
-              [_vm._v("Voir l'article")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("aside", { staticClass: "flex-1 mr-2 mt-auto mb-auto" }, [
-            _c(
-              "span",
-              {
-                staticClass:
-                  "flex w-40 bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mb-3"
-              },
-              [
-                _c("img", {
-                  staticClass: "w-6 mr-2",
-                  attrs: { src: "/img/iconfinder_star_1054969.png" }
-                }),
-                _vm._v("Nouveautés\n      ")
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "span",
-              {
-                staticClass:
-                  "flex w-40 bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mb-3"
-              },
-              [
-                _c("img", {
-                  staticClass: "w-6 mr-2",
-                  attrs: { src: "/img/iconfinder_flame_1055059.png" }
-                }),
-                _vm._v("Tendance\n      ")
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "span",
-              {
-                staticClass:
-                  "flex w-40 bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mb-3"
-              },
-              [
-                _c("img", {
-                  staticClass: "w-6 mr-2",
-                  attrs: { src: "/img/iconfinder_megaphone_1055028.png" }
-                }),
-                _vm._v("L'Equipe\n      ")
-              ]
-            )
-          ])
+          _c("img", {
+            staticClass: "flex w-6 mr-2",
+            attrs: { src: "/img/iconfinder_star_1054969.png" }
+          }),
+          _vm._v("Nouveauté\n        ")
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "flex-1 flex bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+        },
+        [
+          _c("img", {
+            staticClass: "flex w-6 mr-2",
+            attrs: { src: "/img/iconfinder_heart_1055045.png" }
+          }),
+          _vm._v("Coup de cœur\n        ")
         ]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "section",
+      {
+        staticClass:
+          "md:flex rounded overflow-hidden shadow-lg mt-10 ml-10 mr-auto ml-auto mb-10",
+        attrs: { id: "element" }
+      },
+      [
+        _c("img", { staticClass: "w-64", attrs: { src: "/img/img1.jpg" } }),
+        _vm._v(" "),
+        _c("article", { staticClass: "px-6 py-4" }, [
+          _c("header", { staticClass: "font-bold text-xl mb-2" }, [
+            _vm._v("La sélection de l'équipe")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-gray-700 text-base" }, [
+            _vm._v(
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste doloremque facere, harum, sint earum dignissimos culpa, fugit voluptate ex nam asperiores. Doloremque ullam, exercitationem impedit animi ut officia vel esse?"
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "inline-block mt-4 border border-indigo-500 rounded py-1 px-3 bg-transparent hover:bg-indigo-600 hover:border-indigo-500 hover:text-white text-indigo-500",
+              attrs: { href: "#" }
+            },
+            [_vm._v("Voir l'article")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("aside", { staticClass: "flex-1 mr-2 mt-auto mb-auto" }, [
+          _c(
+            "span",
+            {
+              staticClass:
+                "flex w-40 bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mb-3"
+            },
+            [
+              _c("img", {
+                staticClass: "w-6 mr-2",
+                attrs: { src: "/img/iconfinder_star_1054969.png" }
+              }),
+              _vm._v("Nouveautés\n      ")
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass:
+                "flex w-40 bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mb-3"
+            },
+            [
+              _c("img", {
+                staticClass: "w-6 mr-2",
+                attrs: { src: "/img/iconfinder_flame_1055059.png" }
+              }),
+              _vm._v("Tendance\n      ")
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass:
+                "flex w-40 bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mb-3"
+            },
+            [
+              _c("img", {
+                staticClass: "w-6 mr-2",
+                attrs: { src: "/img/iconfinder_megaphone_1055028.png" }
+              }),
+              _vm._v("L'Equipe\n      ")
+            ]
+          )
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -5012,7 +4867,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "login" }, [
+  return _c("section", { staticClass: "login ml-auto mr-auto" }, [
     _vm._m(0),
     _vm._v(" "),
     _c(

@@ -23,6 +23,7 @@ class CreateAuthorsTable extends Migration
             $table->timestamp('born_at');
             $table->timestamp('died_at')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

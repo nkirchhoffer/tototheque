@@ -1,5 +1,5 @@
 <template>
-  <section class="login">
+  <section class="login ml-auto mr-auto">
     <section class="hero is-info">
       <div class="hero-body">
         <div class="container">
