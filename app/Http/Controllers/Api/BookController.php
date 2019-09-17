@@ -17,4 +17,8 @@ class BookController extends Controller {
         return $this->books->with(['author', 'publisher', 'user'])->orderBy('created_at', 'desc')->get();
     }
 
+    public function get(Book $book) {
+        return $this->books->with(['author', 'publisher', 'user'])->find($book->id);
+    }
+
 }

@@ -3,10 +3,10 @@
     <section class="flex flex-wrap content-around justify-center w-3/4">
       <!--Présentation de livre-->
 
-      <article class="rounded overflow-hidden shadow-lg mt-10 w-1/3 m-1" v-for="book in books" :key="book.id">
-        <img id="couverture" class="ml-auto mr-auto" src="/img/livre1.jpg">
+      <router-link tag="article" :to="{ name: 'book', params: {id: book.id} }" class="rounded overflow-hidden shadow-lg mt-10 w-1/3 m-1" v-for="book in books" :key="book.id">
+        <img id="couverture" class="ml-auto mr-auto" :src="book.cover_url">
         <div class="px-6 py-4">
-          <header class="font-bold text-gray-900 text-xl mb-2">{{ book.title }}</header>
+          <header class="font-bold text-gray-900 text-xl mb-2">{{ book.title }} <small>{{ book.author.firstname }}</small></header>
           <p
             class="text-gray-700 text-base"
           >{{ book.description }}</p>
@@ -23,13 +23,10 @@
             <img class="flex w-6 mr-2" src="/img/iconfinder_heart_1055045.png">Coup de cœur
           </span>
         </footer>
-      </article>
+      </router-link>
     </section>
 
-    <section
-      id="element"
-      class="md:flex rounded overflow-hidden shadow-lg mt-10 ml-10 mr-auto ml-auto mb-10"
-    >
+    <section id="element" class="md:flex rounded overflow-hidden shadow-lg mt-10 ml-10 mr-auto ml-auto mb-10">
       <img class="w-64" src="/img/img1.jpg">
       <article class="px-6 py-4">
         <header class="font-bold text-xl mb-2">La sélection de l'équipe</header>
