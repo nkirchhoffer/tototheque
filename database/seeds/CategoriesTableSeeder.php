@@ -13,11 +13,11 @@ class CategoriesTableSeeder extends Seeder
     {
         for ($i = 1; $i <= 20; $i++) {
             DB::table('categories')->insert([
-                'name' => 'Catégorie ' . $i,
-                'description' => 'Cette catégorie est la catégorie ' . $i,
-                'user_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
+                'name'        => 'Catégorie '.$i,
+                'description' => 'Cette catégorie est la catégorie '.$i,
+                'user_id'     => 1,
+                'created_at'  => now(),
+                'updated_at'  => now(),
             ]);
         }
     }

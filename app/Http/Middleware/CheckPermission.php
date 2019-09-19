@@ -11,13 +11,13 @@ class CheckPermission
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
      * @return mixed
      */
     public function handle(Request $request, Closure $next, string $permission)
     {
-
         dd(Auth::guard('web')->user());
 
         if (is_null($request->user())) {

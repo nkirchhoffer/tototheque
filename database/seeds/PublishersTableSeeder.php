@@ -13,12 +13,12 @@ class PublishersTableSeeder extends Seeder
     {
         for ($i = 1; $i <= 20; $i++) {
             DB::table('publishers')->insert([
-                'name' => 'Editeur ' . $i,
+                'name'         => 'Editeur '.$i,
                 'country_code' => 'fr',
-                'opened_at' => now(),
-                'user_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
+                'opened_at'    => now(),
+                'user_id'      => 1,
+                'created_at'   => now(),
+                'updated_at'   => now(),
             ]);
         }
     }
