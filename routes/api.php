@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/login', 'Api\UserController@login');
+Route::post('/login', 'UserController@login');
 
-Route::get('/books/all', 'Api\BookController@all');
-Route::get('/books/{book}', 'Api\BookController@get');
+Route::get('/books/all', 'BookController@all');
+Route::get('/books/{book}', 'BookController@get');

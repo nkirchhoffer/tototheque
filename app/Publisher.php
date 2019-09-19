@@ -33,4 +33,10 @@ class Publisher extends Model
     {
         return $this->hasMany(Book::class);
     }
+
+    public function replicas()
+    {
+        return $this->hasMany(Replica::class);
+    }
+
 }

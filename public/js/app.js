@@ -2530,6 +2530,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -4718,18 +4723,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "book" }, [
-      _c("div", { staticClass: "row" })
+  return _c("section", { staticClass: "book" }, [
+    _c("div", { staticClass: "row w-3/4 mr-auto ml-auto" }, [
+      _c(
+        "article",
+        { staticClass: "rounded overflow-hidden shadow-lg mt-10" },
+        [_c("h1", [_vm._v(_vm._s(_vm.book.title))])]
+      )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -4754,13 +4758,13 @@ var render = function() {
   return _c("section", { staticClass: "home-page" }, [
     _c(
       "section",
-      { staticClass: "flex flex-wrap content-around justify-center w-3/4" },
+      { staticClass: "books" },
       _vm._l(_vm.books, function(book) {
         return _c(
           "router-link",
           {
             key: book.id,
-            staticClass: "rounded overflow-hidden shadow-lg mt-10 w-1/3 m-1",
+            staticClass: "rounded overflow-hidden shadow-lg w-1/4",
             attrs: {
               tag: "article",
               to: { name: "book", params: { id: book.id } }

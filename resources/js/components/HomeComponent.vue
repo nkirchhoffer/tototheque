@@ -1,9 +1,9 @@
 <template>
   <section class="home-page">
-    <section class="flex flex-wrap content-around justify-center w-3/4">
+    <section class="books">
       <!--Présentation de livre-->
 
-      <router-link tag="article" :to="{ name: 'book', params: {id: book.id} }" class="rounded overflow-hidden shadow-lg mt-10 w-1/3 m-1" v-for="book in books" :key="book.id">
+      <router-link tag="article" :to="{ name: 'book', params: {id: book.id} }" class="rounded overflow-hidden shadow-lg w-1/4" v-for="book in books" :key="book.id">
         <img id="couverture" class="ml-auto mr-auto" :src="book.cover_url">
         <div class="px-6 py-4">
           <header class="font-bold text-gray-900 text-xl mb-2">{{ book.title }} <small>{{ book.author.firstname }}</small></header>

@@ -1,6 +1,11 @@
 <template>
     <section class="book">
-        <div class="row"></div>
+        <div class="row w-3/4 mr-auto ml-auto">
+            <article class="rounded overflow-hidden shadow-lg mt-10">
+                
+                <h1>{{ book.title }}</h1>
+            </article>
+        </div>
     </section>
 </template>
 

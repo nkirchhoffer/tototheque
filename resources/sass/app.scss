@@ -7,16 +7,21 @@
     overflow: hidden;
 }
 
-#background{
+.books {
+    width: 80%;
+    display: grid;
+}
+
+#background {
     height: 200px;
 }
 
-#element{
+#element {
     width: 1230px;
     height: 200px;
 }
 
-#couverture{
+#couverture {
     width: auto;
     height: 400px;
 }

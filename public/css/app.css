@@ -7556,6 +7556,11 @@ video {
   overflow: hidden;
 }
 
+.books {
+  width: 80%;
+  display: grid;
+}
+
 #background {
   height: 200px;
 }
