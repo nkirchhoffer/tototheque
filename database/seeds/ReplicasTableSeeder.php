@@ -15,14 +15,14 @@ class ReplicasTableSeeder extends Seeder
         for ($i = 1; $i <= 20; $i++) {
             for ($j = 1; $j <= 20; $j++) {
                 DB::table('replicas')->insert([
-                    'book_id' => $i,
+                    'book_id'      => $i,
                     'publisher_id' => $j,
-                    'isbn' => 1234567891012,
-                    'state' => '0',
+                    'isbn'         => 1234567891012,
+                    'state'        => '0',
                     'published_at' => now()->subYears(30),
-                    'bought_at' => now(),
-                    'created_at' => now(),
-                    'updated_at' => now()
+                    'bought_at'    => now(),
+                    'created_at'   => now(),
+                    'updated_at'   => now(),
                 ]);
             }
         }
