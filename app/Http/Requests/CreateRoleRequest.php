@@ -25,7 +25,7 @@ class CreateRoleRequest extends FormRequest
     {
         return [
             'title' => 'required|between:3,64|alpha|unique:roles',
-            'rank' => 'required|numeric|unique:roles'
+            'rank'  => 'required|numeric|unique:roles',
         ];
     }
 }
