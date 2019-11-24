@@ -38,31 +38,36 @@ class User extends Authenticatable
     ];
 
     /**
-     * Restitution des roles avec une relation N..N
-     * 
+     * Restitution des roles avec une relation N..N.
+     *
      * @return BelongsToMany
      */
-    public function roles() {
+    public function roles()
+    {
         return $this->belongsToMany(Role::class);
     }
 
     /**
-     * Retourne si l'utilisateur dispose d'une certaine permission
+     * Retourne si l'utilisateur dispose d'une certaine permission.
+     *
      * @param Permission $permission Permission recherchée
+     *
      * @return bool
      */
-    public function hasPermission(string $permission): bool {
+    public function hasPermission(string $permission): bool
+    {
         $permission = Permission::where('title', '=', $permission)->first();
         $permissions = [];
 
         foreach ($this->roles as $role) {
-            foreach($role->permissions as $permission) {
+            foreach ($role->permissions as $permission) {
                 $permissions[] = $permission;
             }
         }
 
         return in_array($permission, $permissions);
     }
+<<<<<<< HEAD
 
     public function superiorTo(User $user): bool {
         $highestRole = 0;
@@ -85,4 +90,6 @@ class User extends Authenticatable
 
     }
 
+=======
+>>>>>>> 0e98059ca8e37a3ad4da202a840c9b6eab1f5b4f
 }

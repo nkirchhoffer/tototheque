@@ -12,17 +12,17 @@ class PermissionsTableSeeder extends Seeder
     public function run()
     {
         DB::table('permissions')->insert([
-            'title' => 'access_admin',
+            'title'      => 'access_admin',
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ]);
 
         // Les permissions sont implémentées dans le code, on ne les gère pas via l'admin
 
         DB::table('permissions')->insert([
-            'title' => 'manage_roles',
+            'title'      => 'manage_roles',
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ]);
     }
 }
