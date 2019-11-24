@@ -24,8 +24,8 @@ class PermissionAssignRequest extends FormRequest
     public function rules()
     {
         return [
-            'role' => 'required|numeric|exists:roles',
-            'permissions' => 'required|numeric|exists:permissions'
+            'role'        => 'required|numeric|exists:roles',
+            'permissions' => 'required|numeric|exists:permissions',
         ];
     }
 }
