@@ -67,7 +67,6 @@ class User extends Authenticatable
 
         return in_array($permission, $permissions);
     }
-<<<<<<< HEAD
 
     public function superiorTo(User $user): bool {
         $highestRole = 0;
@@ -90,6 +89,4 @@ class User extends Authenticatable
 
     }
 
-=======
->>>>>>> 0e98059ca8e37a3ad4da202a840c9b6eab1f5b4f
 }
