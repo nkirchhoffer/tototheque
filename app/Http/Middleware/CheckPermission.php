@@ -18,8 +18,6 @@ class CheckPermission
     public function handle(Request $request, Closure $next, string $permission)
     {
 
-        dd(Auth::guard('web')->user());
-
         if (is_null($request->user())) {
             abort(403, 'Vous n\'êtes pas connecté.');
         }

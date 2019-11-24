@@ -64,4 +64,25 @@ class User extends Authenticatable
         return in_array($permission, $permissions);
     }
 
+    public function superiorTo(User $user): bool {
+        $highestRole = 0;
+
+        foreach ($user->roles as $role) {
+            if ($role->rank > $highestRole) {
+                $highestRole = $role->rank;
+            }
+        }
+
+        $superior = false;
+        foreach ($this->roles as $role) {
+            if ($role->rank > $highestRole) {
+                $superior = true;
+                break;
+            }
+        }
+
+        return $superior;
+
+    }
+
 }
