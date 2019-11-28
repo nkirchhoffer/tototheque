@@ -11,18 +11,15 @@ class RolePermissionTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('permission_role')->insert([
-            'role_id'       => 1,
-            'permission_id' => 1,
-            'created_at'    => now(),
-            'updated_at'    => now(),
-        ]);
+        $permissions = DB::table('permissions')->get();
 
-        DB::table('permission_role')->insert([
-            'role_id'       => 1,
-            'permission_id' => 2,
-            'created_at'    => now(),
-            'updated_at'    => now(),
-        ]);
+        foreach($permissions as $permission) {    
+            DB::table('permission_role')->insert([
+                'role_id'       => 1,
+                'permission_id' => $permission->id,
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ]);
+        }
     }
 }

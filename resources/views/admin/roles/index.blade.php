@@ -22,7 +22,7 @@
                             @endforeach
                         </td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-warning">Retirer un rôle</a>
+                            <a href="{{ route('admin.roles.withdraw', ['user' => $user->id]) }}" class="btn btn-sm btn-warning">Retirer un rôle</a>
                             <a href="#" class="btn btn-sm btn-danger">Retirer tous les rôles</a>
                         </td>
                     </tr>

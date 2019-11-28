@@ -15,7 +15,7 @@
                     <a href="#" class="nav-link">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Ressources humaines</a>
+                    <a href="{{ route('admin.perms.assign') }}" class="nav-link">Ressources humaines</a>
                 </li>
             </ul>
         </div>

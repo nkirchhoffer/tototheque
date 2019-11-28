@@ -9,6 +9,12 @@ use App\Role;
 
 class PermissionsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:manage_roles');
+    }
+
     public function index()
     {
         $roles = Role::all();
