@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Author;
 use App\Http\Controllers\Controller;
 
-class AuthorsController extends Controller {
-
+class AuthorsController extends Controller
+{
     public function __construct()
     {
         $this->middleware('permission:manage_authors');
@@ -18,5 +18,4 @@ class AuthorsController extends Controller {
 
         return view('admin.authors.index', ['authors' => $authors]);
     }
-
 }
