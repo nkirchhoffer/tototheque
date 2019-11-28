@@ -13,7 +13,6 @@ use Illuminate\Auth\AuthManager;
 
 class RolesController extends Controller
 {
-
     private $auth;
 
     public function __construct(AuthManager $auth)
@@ -90,10 +89,9 @@ class RolesController extends Controller
         }
 
         return view('admin.roles.withdraw', ['user' => $user]);
-
     }
 
-    public function withdraw(WithdrawRoleRequest $request, User $user) 
+    public function withdraw(WithdrawRoleRequest $request, User $user)
     {
         $roleId = $request->get('role');
         $role = Role::find($roleId);
@@ -101,15 +99,15 @@ class RolesController extends Controller
         $user->roles()->detach($role);
 
         return redirect()->route('admin.roles.index')->with('success', 'Le rôle '.$role->title.' a bien été retiré à '.$user->name);
-
     }
 
-    public function withdrawAll(User $user) {
+    public function withdrawAll(User $user)
+    {
         if ((!$this->auth->user()->superiorTo($user) || !$this->auth->user()->hasPermission('manage_roles')) && $user->id !== $this->auth->user()->id) {
             return redirect()->route('admin.index')->withErrors('Action non autorisée.');
         }
 
-        foreach($user->roles as $role) {
+        foreach ($user->roles as $role) {
             $user->roles()->detach($role);
         }
 
