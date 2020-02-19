@@ -2,9 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
 use App\User;
+use Illuminate\Foundation\Http\FormRequest;
 
 class WithdrawRoleRequest extends FormRequest
 {
@@ -16,7 +15,7 @@ class WithdrawRoleRequest extends FormRequest
     public function authorize()
     {
         $user = $this->route('user');
-        
+
         if (($this->user()->superiorTo($user) && $this->user()->hasPermission('manage_roles')) || $this->user()->id == $user->id) {
             return true;
         }
