@@ -19,6 +19,6 @@ Route::get('/test', function () {
     dd(Auth::user());
 })->middleware('permission:access_admin');
 
-Route::get('/demo', function() {
+Route::get('/demo', function () {
     return view('demo');
 });

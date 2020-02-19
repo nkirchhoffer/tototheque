@@ -24,12 +24,12 @@ class CreateAuthorRequest extends FormRequest
     public function rules()
     {
         return [
-            'firstname' => 'required|alpha',
-            'lastname' => 'required|alpha',
-            'biography' => 'required|between:6,280',
+            'firstname'    => 'required|alpha',
+            'lastname'     => 'required|alpha',
+            'biography'    => 'required|between:6,280',
             'country_code' => 'required|between:2,2',
-            'birthdate' => 'required',
-            'death' => 'required'
+            'birthdate'    => 'required',
+            'death'        => 'required',
         ];
     }
 }
