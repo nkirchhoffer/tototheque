@@ -30,7 +30,9 @@
             </ul>
         </header>
 
-        <router-view></router-view>
+        <div class="container mx-auto">
+            <router-view></router-view>
+        </div>
     </div>
 
     <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>

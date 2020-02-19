@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    background: #f1f3f4;
+}
+
 .header-brand {
     height: 250px;
     overflow: hidden;
@@ -25,3 +29,65 @@
     width: auto;
     height: 400px;
 }
+// body, html {
+//     padding: 0px;
+//     margin: 0px;
+// }
+
+// @media screen and (min-height: 900px) {
+//     section.header {
+//         width: 100%;
+//         height: 300px;
+
+//         background-color: #FF0000;
+
+//         nav.navbar {
+//             width: 80%;
+//             height: 45px;
+//             margin: auto;
+
+//             font-size: 14pt;
+
+//             div.logo {
+//                 width: calc(20% - 50px);
+                
+//                 display: inline-block;
+//             }
+
+//             ul.navigation {
+//                 width: calc(80% - 50px);
+
+//                 display: inline-block;
+
+//                 li { display: inline; padding: 0 15px; }
+//             }
+//         }
+//     }
+
+// }
+
+// section.content {
+//     width: 75%;
+
+//     background-color: #00FF00;
+//     min-height: 350px;
+
+//     margin: auto;
+
+//     section.books {
+//         width: 70%;
+//         background-color: #0000FF;
+//         height: 100%;
+
+//         display: inline-block;
+//     }
+
+//     section.flux {
+//         width: 29%;
+//         background-color: #efefef;
+//         height: 100%;
+
+//         display: inline-block;
+//     }
+
+// }

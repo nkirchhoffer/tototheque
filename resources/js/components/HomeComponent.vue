@@ -59,6 +59,10 @@
   </section>
 </template>
 
+<style lang="scss">
+
+</style>
+
 <script>
 import http from '../http'
 

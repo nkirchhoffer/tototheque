@@ -17,6 +17,9 @@
                 <li class="nav-item">
                     <a href="{{ route('admin.perms.assign') }}" class="nav-link">Ressources humaines</a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.authors.index') }}" class="nav-link">Gestion des ressources</a>
+                </li>
             </ul>
         </div>
     </nav>

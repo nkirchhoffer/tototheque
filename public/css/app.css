@@ -7551,6 +7551,10 @@ video {
   z-index: auto;
 }
 
+body {
+  background: #f1f3f4;
+}
+
 .header-brand {
   height: 250px;
   overflow: hidden;
