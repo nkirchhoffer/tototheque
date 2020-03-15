@@ -32,12 +32,12 @@
                     </div>
                     <div class="form-group">
                         <label for="birthdate">Date de naissance</label>
-                        <input type="text" class="form-control" name="birthdate" required/>
+                        <input type="date" class="form-control" name="birthdate" required/>
                         <p class="form-text text-muted">Respecter le format DD/MM/YYYY</p>
                     </div>
                     <div class="form-group">
                         <label for="death">Date de mort (optionnelle)</label>
-                        <input type="text" class="form-control" name="death" required/>
+                        <input type="date" class="form-control" name="death"/>
                         <p class="form-text text-muted">Champ optionnel. Format DD/MM/YYYY</p>
                     </div>
                 </div>

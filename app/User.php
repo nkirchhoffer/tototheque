@@ -47,6 +47,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
+    public function verificationTokens()
+    {
+        return $this->hasMany(VerificationToken::class);
+    }
+
     /**
      * Retourne si l'utilisateur dispose d'une certaine permission.
      *

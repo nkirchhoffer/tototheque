@@ -28,8 +28,8 @@ class CreateAuthorRequest extends FormRequest
             'lastname' => 'required|alpha',
             'biography' => 'required|between:6,280',
             'country_code' => 'required|between:2,2',
-            'birthdate' => 'required',
-            'death' => 'required'
+            'birthdate' => 'required|date',
+            'death' => 'nullable|date'
         ];
     }
 }

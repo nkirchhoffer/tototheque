@@ -4,6 +4,7 @@
     <title>Totothèque - Administration</title>
 
     <link rel="stylesheet" href="{{ mix('css/admin.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('/fontawesome/css/all.css') }}" type="text/css" />
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -38,5 +39,7 @@
     </div>
 
     <script src="{{ mix('js/admin.js') }}" type="text/javascript"></script>
+
+    @yield('scripts')
 </body>
 </html>

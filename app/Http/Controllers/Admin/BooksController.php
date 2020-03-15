@@ -17,7 +17,10 @@ class BooksController extends Controller {
 
     public function newBook()
     {
-        return view('admin.books.new');
+        return view('admin.books.new', [
+            'authors' => \App\Author::all(),
+            'publishers' => \App\Publisher::all()
+        ]);
     }
 
 

@@ -13,13 +13,26 @@ const actions = {
         context.commit('setUser', payload)
     },
 
-    fetchUser(context) {
+    fetchUser (context) {
         http.get('/user').then(res => {
             res.json().then(data => {
                 context.commit('setUser', data)
             })
         }).catch(console.error)
+    },
+
+    async register (context, data) {
+        const res = await http.post('/register', data)
+        const payload = await res.json()
+
+        if (res.status !== 200) {
+            throw new Error(payload.message)
+        }
+
+        return true
     }
+
+
 
 }
 

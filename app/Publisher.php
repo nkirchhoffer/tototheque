@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Publisher extends Model
@@ -17,7 +19,7 @@ class Publisher extends Model
     /**
      * Retourne l'utilisateur qui a créé l'objet.
      *
-     * @return User
+     * @return BelongsTo
      */
     public function user()
     {
@@ -27,7 +29,7 @@ class Publisher extends Model
     /**
      * Liste les livres associés à cet éditeur.
      *
-     * @return Collection<Book>
+     * @return HasMany
      */
     public function books()
     {
