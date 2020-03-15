@@ -1,7 +1,6 @@
 <p align="center"><h1>Totothèque</h1></p>
 
 <p align="center">
-    <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fnkirchhoffer%2Ftototheque?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnkirchhoffer%2Ftototheque.svg?type=shield"/></a>
     <a href="https://travis-ci.com/nkirchhoffer/tototheque" alt="TravisCI Status"><img src="https://travis-ci.com/nkirchhoffer/tototheque.svg?branch=master" /></a>
     <a href="https://github.styleci.io/repos/177466059"><img src="https://github.styleci.io/repos/177466059/shield?branch=master"></a>
     <a href="https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nkirchhoffer/tototheque&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/e742f20d1f2f49c39261bcf78ed472cc"/></a>
@@ -13,8 +12,8 @@ Conduit dans le cadre des cours en DUT Réseaux et télécommunications, ce proj
 
 Les charges principales sont les suivantes :
 
-- [ ] Gérer le personnel de la bibliothèque
-- [ ] Gérer les ouvrages de la bibliothèque
+- [x] Gérer le personnel de la bibliothèque
+- [x] Gérer les ouvrages de la bibliothèque
 - [ ] Avoir un aperçu en direct des emprunts en cours de la bibliothèque
 - [ ] Afficher les ouvrages et proposer un aperçu individuel
 - [x] Disposer d'un espace membre
@@ -63,8 +62,3 @@ Les contributions ne sont pour l'instant pas acceptées, le projet étant scolai
 ## Licence
 
 Ce projet est sous licence MIT, que vous pourrez retrouver dans le fichier `LICENSE`.
-
-Les licences sont scannées en temps réel grâce à l'outil [Fossa](https://fossa.com).
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnkirchhoffer%2Ftototheque.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnkirchhoffer%2Ftototheque?ref=badge_large)
-
