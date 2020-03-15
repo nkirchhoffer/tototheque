@@ -1,11 +1,12 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\AuthManager;
 
-class BooksController extends Controller {
-
+class BooksController extends Controller
+{
     private $auth;
 
     public function __construct(AuthManager $auth)
@@ -18,10 +19,8 @@ class BooksController extends Controller {
     public function newBook()
     {
         return view('admin.books.new', [
-            'authors' => \App\Author::all(),
-            'publishers' => \App\Publisher::all()
+            'authors'    => \App\Author::all(),
+            'publishers' => \App\Publisher::all(),
         ]);
     }
-
-
 }

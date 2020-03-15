@@ -24,11 +24,11 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|alpha_spaces',
-            'nick' => 'required|alpha_num|between:3,32|unique:users',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|between:6,64',
-            'password_confirmation' => 'required|same:password'
+            'name'                  => 'required|alpha_spaces',
+            'nick'                  => 'required|alpha_num|between:3,32|unique:users',
+            'email'                 => 'required|email|unique:users',
+            'password'              => 'required|between:6,64',
+            'password_confirmation' => 'required|same:password',
         ];
     }
 }

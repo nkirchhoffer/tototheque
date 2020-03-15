@@ -1,15 +1,14 @@
 <?php
 
-
 namespace App\Http\Controllers;
-
 
 use App\User;
 use App\VerificationToken;
 
 class UserController extends Controller
 {
-    public function verify(VerificationToken $token) {
+    public function verify(VerificationToken $token)
+    {
         $token = VerificationToken::where('token', '=', $token)->first();
 
         if (!$token) {
@@ -28,6 +27,5 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('login')->with('success', 'Cette adresse mail a bien été vérifiée.');
-
     }
 }

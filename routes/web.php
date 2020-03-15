@@ -18,7 +18,7 @@ Route::get('/logout', function () {
     Auth::logout();
 });
 
-Route::get('/mail', function() {
+Route::get('/mail', function () {
     $user = App\User::find(3);
     $token = $user->verificationTokens()->first();
 
@@ -29,6 +29,6 @@ Route::get('/test', function () {
     dd(Auth::user());
 })->middleware('permission:access_admin');
 
-Route::get('/demo', function() {
+Route::get('/demo', function () {
     return view('demo');
 });

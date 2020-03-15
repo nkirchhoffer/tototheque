@@ -24,10 +24,10 @@ class CreatePublisherRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|alpha|unique:publishers',
-            'country' => 'required|alpha',
+            'name'      => 'required|alpha|unique:publishers',
+            'country'   => 'required|alpha',
             'createdAt' => 'required|date',
-            'closedAt' => 'nullable|date'
+            'closedAt'  => 'nullable|date',
         ];
     }
 }
