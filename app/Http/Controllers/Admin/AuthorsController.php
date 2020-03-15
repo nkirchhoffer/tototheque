@@ -19,7 +19,7 @@ class AuthorsController extends Controller
 
     public function index()
     {
-        $authors = Author::all();
+        $authors = Author::paginate(10);
 
         return view('admin.authors.index', ['authors' => $authors]);
     }
@@ -44,5 +44,36 @@ class AuthorsController extends Controller
         $author->save();
 
         return redirect()->route('admin.authors.index')->with('success', 'L\'auteur '.$author->firstname.' '.$author->lastname.' a bien été ajouté à la base de données.');
+    }
+
+    public function update(Author $author)
+    {
+        return view('admin.authors.edit', ['author' => $author]);
+    }
+
+    public function submitUpdate(CreateAuthorRequest $request, Author $author)
+    {
+        $firstname = $request->get('firstname');
+        $lastname = $request->get('lastname');
+        $biography = $request->get('biography');
+        $country = $request->get('country_code');
+        $bornAt = $request->get('birthdate');
+        $diedAt = $request->get('death');
+
+        $author->firstname = $firstname;
+        $author->lastname = $lastname;
+        $author->biography = $biography;
+        $author->country_code = $country;
+        $author->born_at = $bornAt;
+        $author->died_at = $diedAt;
+        $author->save();
+
+        return redirect()->route('admin.authors.index')->with('success', 'Les informations de ' . $author->lastname . ' ont bien été modifiées !');
+    }
+
+    public function delete(Author $author)
+    {
+        $author->delete();
+        return redirect()->back()->with('success', 'Cet auteur a bien été supprimé !');
     }
 }

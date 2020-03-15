@@ -27,7 +27,7 @@
                                 <td>{{ (is_null($publisher->closed_at) ? 'Encore ouvert' : $publisher->closed_at) }}</td>
                                 <td>{{ $publisher->user->name }}</td>
                                 <td>
-                                    <a href="{{ route('admin.publishers.update', ['publisher' => $publisher]) }}" class="btn btn-warning"><i class="far fa-edit"></i></a>
+                                    <a href="{{ route('admin.publishers.update', ['publisher' => $publisher]) }}" class="btn btn-warning" style="color: #FFF"><i class="far fa-edit"></i></a>
                                     <a href="{{ route('admin.publishers.delete', ['publisher' => $publisher]) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                                 </td>
                             </tr>
