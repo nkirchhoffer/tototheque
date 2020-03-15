@@ -35,20 +35,21 @@ class UserController extends Controller
         return $this->auth->user();
     }
 
-    public function register(CreateUserRequest $request) {
+    public function register(CreateUserRequest $request)
+    {
         $name = $request->get('name');
         $nick = $request->get('nick');
         $email = $request->get('email');
         $password = bcrypt($request->get('password'));
 
-        $user = new User;
+        $user = new User();
         $user->name = $name;
         $user->nick = $nick;
         $user->email = $email;
         $user->password = $password;
         $user->save();
 
-        $token = new VerificationToken;
+        $token = new VerificationToken();
         $token->token = uniqid();
         $token->user_id = $user->id;
         $token->save();

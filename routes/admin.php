@@ -15,14 +15,14 @@ Route::get('/authors/create', 'AuthorsController@new')->name('admin.authors.crea
 Route::get('/books/create', 'BooksController@newBook')->name('admin.books.create');
 
 /**
- * CRUD Editeurs
+ * CRUD Editeurs.
  */
 Route::get('/publishers/create', 'PublishersController@create')->name('admin.publishers.create');
 Route::get('/publishers', 'PublishersController@index')->name('admin.publishers.index');
 Route::get('/publishers/update/{publisher}', 'PublishersController@update')->name('admin.publishers.update');
 Route::get('/publishers/delete/{publisher}', 'PublishersController@delete')->name('admin.publishers.delete');
 
-Route::post('/publishers/create','PublishersController@submitCreate')->name('admin.publishers.create');
+Route::post('/publishers/create', 'PublishersController@submitCreate')->name('admin.publishers.create');
 Route::post('/publishers/update/{publisher}', 'PublishersController@submitUpdate')->name('admin.publishers.update');
 
 Route::post('/roles/create', 'RolesController@create')->name('admin.roles.new');

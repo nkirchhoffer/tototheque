@@ -7,11 +7,11 @@ use App\VerificationToken;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class VerifyMailAddress extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     private $token;
     private $user;
@@ -20,6 +20,7 @@ class VerifyMailAddress extends Mailable
      * Create a new message instance.
      *
      * @param VerificationToken $token Token de vérification
+     *
      * @return void
      */
     public function __construct(VerificationToken $token, User $user)
