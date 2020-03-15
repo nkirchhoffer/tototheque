@@ -7,8 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateAuthorRequest;
 use Illuminate\Auth\AuthManager;
 
-class AuthorsController extends Controller {
-
+class AuthorsController extends Controller
+{
     private $auth;
 
     public function __construct(AuthManager $auth)
@@ -33,7 +33,7 @@ class AuthorsController extends Controller {
     {
         $userId = $this->auth->user()->id;
 
-        $author = new Author;
+        $author = new Author();
         $author->firstname = $request->get('firstname');
         $author->lastname = $request->get('lastname');
         $author->biography = $request->get('biography');
@@ -45,5 +45,4 @@ class AuthorsController extends Controller {
 
         return redirect()->route('admin.authors.index')->with('success', 'L\'auteur '.$author->firstname.' '.$author->lastname.' a bien été ajouté à la base de données.');
     }
-
 }

@@ -5,50 +5,55 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreatePublisherRequest;
 use App\Publisher;
-use \Exception;
+use Exception;
 
-class PublishersController extends Controller {
-
+class PublishersController extends Controller
+{
     private $publishers;
 
-    public function construct(Publisher $publishers) {
+    public function construct(Publisher $publishers)
+    {
         $this->publishers = $publishers;
 
         $this->middleware('permisison:manage_publishers');
     }
 
-    public function index() {
+    public function index()
+    {
         return view('admin.publishers.index', [
-            'publishers' => Publisher::paginate(10)
+            'publishers' => Publisher::paginate(10),
         ]);
     }
 
-    public function create() {
+    public function create()
+    {
         return view('admin.publishers.new');
     }
 
-    public function submitCreate(CreatePublisherRequest $request) {
+    public function submitCreate(CreatePublisherRequest $request)
+    {
         $name = $request->get('name');
         $country = $request->get('country');
         $createdAt = $request->get('created_at');
         $closedAt = $request->get('closed_at');
 
         Publisher::insert([
-            'name' => $name,
+            'name'         => $name,
             'country_code' => $country,
-            'opened_at' => $createdAt,
-            'closed_at' => $closedAt,
-            'user_id' => $request->user()->id,
-            'created_at' => now(),
-            'updated_at' => now()
+            'opened_at'    => $createdAt,
+            'closed_at'    => $closedAt,
+            'user_id'      => $request->user()->id,
+            'created_at'   => now(),
+            'updated_at'   => now(),
         ]);
 
         $publisher = Publisher::where('name', '=', $name)->first();
 
-        return redirect()->route('admin.publishers.index')->with('success', 'L\'éditeur ' . $publisher->name . ' a bien été créé !');
+        return redirect()->route('admin.publishers.index')->with('success', 'L\'éditeur '.$publisher->name.' a bien été créé !');
     }
 
-    public function delete(Publisher $publisher) {
+    public function delete(Publisher $publisher)
+    {
         try {
             $publisher->delete();
         } catch (Exception $e) {
@@ -56,14 +61,15 @@ class PublishersController extends Controller {
         }
 
         return redirect()->back()->with('success', 'Cet éditeur a bien été supprimé !');
-
     }
 
-    public function update(Publisher $publisher) {
+    public function update(Publisher $publisher)
+    {
         return view('admin.publishers.edit', ['publisher' => $publisher]);
     }
 
-    public function submitUpdate(CreatePublisherRequest $request, Publisher $publisher) {
+    public function submitUpdate(CreatePublisherRequest $request, Publisher $publisher)
+    {
         $name = $request->get('name');
         $country = $request->get('country');
         $createdAt = $request->get('createdAt');
@@ -75,7 +81,6 @@ class PublishersController extends Controller {
         $publisher->closed_at = $closedAt;
         $publisher->save();
 
-        return redirect()->route('admin.publishers.index')->with('success', 'L\'éditeur ' . $publisher->name . ' a bien été modifié !');
+        return redirect()->route('admin.publishers.index')->with('success', 'L\'éditeur '.$publisher->name.' a bien été modifié !');
     }
-
 }

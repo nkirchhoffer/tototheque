@@ -11,7 +11,8 @@ class VerificationToken extends Model
 
     public $dates = ['verified_at', 'created_at', 'updated_at'];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }
