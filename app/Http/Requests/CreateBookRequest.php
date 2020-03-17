@@ -27,8 +27,8 @@ class CreateBookRequest extends FormRequest
             'title' => 'required',
             'description' => 'required',
             'authors' => 'required|exists:authors,id',
-            'publishers' => 'required|exists:publishers,id',
-            'cover' => 'required|file|image'
+            'cover' => 'required|file|image',
+            'publishedAt' => 'required|date'
         ];
     }
 }

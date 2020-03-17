@@ -5,7 +5,7 @@
     </div>
 
     <div class="list-group" style="margin-top: 25px">
-        <a href="{{ route('admin.books.create') }}" class="list-group-item list-group-item-action {{ ($page == 'books.index') ? 'active' : '' }}">Liste des livres</a>
+        <a href="{{ route('admin.books.index') }}" class="list-group-item list-group-item-action {{ ($page == 'books.index') ? 'active' : '' }}">Liste des livres</a>
         <a href="{{ route('admin.books.create') }}" class="list-group-item list-group-item-action {{ ($page == 'books.new') ? 'active' : '' }}">Ajouter un livre</a>
     </div>
 

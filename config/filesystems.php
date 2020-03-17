@@ -57,12 +57,22 @@ return [
 
         's3' => [
             'driver' => 's3',
+            'key'      => env('AWS_ACCESS_KEY_ID'),
+            'secret'   => env('AWS_SECRET_ACCESS_KEY'),
+            'region'   => 'fr-par',
+            'version'  => 'latest',
+            'bucket'   => 'tototheque',
+            'endpoint' => 'https://s3.fr-par.scw.cloud',
+        ],
+
+        'scaleway' => [
+            'driver' => 's3',
             'key'    => env('AWS_ACCESS_KEY_ID'),
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-            'url'    => env('AWS_URL'),
-        ],
+            'region' => 'fr-par',
+            'bucket' => 'tototheque',
+            'url'    => 'https://s3.fr-par.scw.cloud',
+        ]
 
     ],
 

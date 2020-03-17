@@ -21,6 +21,13 @@ class BooksController extends Controller
         $this->middleware('permission:manage_books');
     }
 
+    public function index()
+    {
+        return view('admin.books.index', [
+            'books' => Book::paginate(10)
+        ]);
+    }
+
     public function newBook()
     {
         return view('admin.books.new', [
@@ -36,11 +43,27 @@ class BooksController extends Controller
         $authors = $request->get('authors');
         $publishers = $request->get('publishers');
         $cover = $request->file('cover');
+        $publishedAt = $request->get('publishedAt');
 
         if (!$cover->isValid()) {
             return redirect()->back(401)->withErrors('Un problème est survenu lors de l\'envoi de la couverture.');
         }
 
-        $book = new Book
+        $filename = uniqid();
+        $path = $cover->storeAs('covers', $filename . '.' . $cover->extension(), 's3');
+
+        $book = new Book;
+        $book->title = $title;
+        $book->description = $description;
+        $book->user_id = $request->user()->id;
+        $book->cover_url = $path;
+        $book->published_at = $publishedAt;
+        $book->save();
+
+        foreach ($request->get('authors') as $author) {
+            $book->authors()->attach($author);
+        }
+
+        return redirect()->route('admin.books.index')->with('success', 'Le livre ' . $book->title . ' a bien été créé !');
     }
  }

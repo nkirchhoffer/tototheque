@@ -12,7 +12,7 @@
                 <div class="card-header">
                     Ajouter un livre
                 </div>
-                <form action="{{ route('admin.books.create') }}" method="POST">
+                <form enctype="multipart/form-data" action="{{ route('admin.books.create') }}" method="POST">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
@@ -46,6 +46,11 @@
                         <div class="form-group">
                             <label for="cover">Photo de couverture</label>
                             <input type="file" name="cover" id="cover" accept="image/*" class="form-control" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="publishedAt">Date de publication</label>
+                            <input type="date" class="form-control" name="publishedAt" required />
                         </div>
                     </div>
 

@@ -13,33 +13,16 @@ class Book extends Model
 
     public $dates = ['created_at', 'updated_at', 'deleted_at', 'published_at'];
 
-    public function __construct(string $title, string $description, )
-
-    /**
-     * Retourne l'auteur du livre.
-     *
-     * @return App\Author
-     */
-    public function author()
+    public function authors()
     {
-        return $this->belongsTo(Author::class);
+        return $this->belongsToMany(Author::class);
     }
 
-    /**
-     * Retourne la maison d'édition du livre.
-     *
-     * @return App\Publisher
-     */
-    public function publisher()
+    public function categories()
     {
-        return $this->belongsTo(Publisher::class);
+        return $this->belongsToMany(Category::class);
     }
 
-    /**
-     * Retourne l'utilisateur ayant enregistré le livre.
-     *
-     * @return App\User
-     */
     public function user()
     {
         return $this->belongsTo(User::class);
