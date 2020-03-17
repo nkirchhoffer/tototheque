@@ -5,6 +5,7 @@
 
     <link rel="stylesheet" href="{{ mix('css/admin.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('/fontawesome/css/all.css') }}" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -39,7 +40,7 @@
     </div>
 
     <script src="{{ mix('js/admin.js') }}" type="text/javascript"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
     @yield('scripts')
 </body>
 </html>

@@ -27,6 +27,8 @@ Route::post('/authors/update/{author}', 'AuthorsController@submitUpdate')->name(
  */
 Route::get('/books/create', 'BooksController@newBook')->name('admin.books.create');
 
+Route::post('/books/create', 'BooksController@submitNewBook')->name('admin.books.create');
+
 /**
  * CRUD Editeurs.
  */

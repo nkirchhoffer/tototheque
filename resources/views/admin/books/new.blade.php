@@ -12,7 +12,7 @@
                 <div class="card-header">
                     Ajouter un livre
                 </div>
-                <form action="#" method="POST">
+                <form action="{{ route('admin.books.create') }}" method="POST">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
@@ -26,18 +26,26 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="author">Auteur du livre</label>
-                            <input type="text" class="form-control" id="author" multiple name="authors[]" required />
+                            <label for="authors">Auteur(s) du livre</label>
+                            <select name="authors[]" id="authors" multiple required>
+                                @foreach($authors as $author)
+                                    <option value="{{ $author->id }}">{{ $author->getFullName() }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="publisher">Éditeur du livre</label>
-                            <input type="text" class="form-control" id="publisher" name="publisher" required />
+                            <label for="publishers">Éditeur(s) du livre</label>
+                            <select name="publishers[]" id="publishers" multiple required>
+                                @foreach($publishers as $publisher)
+                                    <option value="{{ $publisher->id }}">{{ $publisher->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group">
                             <label for="cover">Photo de couverture</label>
-                            <input type="file" name="cover" id="cover" class="form-control" required />
+                            <input type="file" name="cover" id="cover" accept="image/*" class="form-control" required />
                         </div>
                     </div>
 
@@ -49,4 +57,11 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        new Choices(document.getElementById('authors'))
+        new Choices(document.getElementById('publishers'))
+    </script>
 @endsection

@@ -13,6 +13,8 @@ class Book extends Model
 
     public $dates = ['created_at', 'updated_at', 'deleted_at', 'published_at'];
 
+    public function __construct(string $title, string $description, )
+
     /**
      * Retourne l'auteur du livre.
      *

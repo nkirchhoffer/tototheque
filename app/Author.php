@@ -22,4 +22,9 @@ class Author extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getFullName()
+    {
+        return $this->firstname . ' ' . strtoupper($this->lastname);
+    }
 }
