@@ -24,11 +24,11 @@ class CreateBookRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'title'       => 'required',
             'description' => 'required',
-            'authors' => 'required|exists:authors,id',
-            'publishers' => 'required|exists:publishers,id',
-            'cover' => 'required|file|image'
+            'authors'     => 'required|exists:authors,id',
+            'publishers'  => 'required|exists:publishers,id',
+            'cover'       => 'required|file|image',
         ];
     }
 }

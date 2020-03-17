@@ -25,6 +25,6 @@ class Author extends Model
 
     public function getFullName()
     {
-        return $this->firstname . ' ' . strtoupper($this->lastname);
+        return $this->firstname.' '.strtoupper($this->lastname);
     }
 }

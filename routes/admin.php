@@ -12,7 +12,7 @@ Route::get('/roles/withdraw/{user}', 'RolesController@withdrawView')->name('admi
 Route::get('/roles/withdraw/all/{user}', 'RolesController@withdrawAll')->name('admin.roles.withdrawAll');
 
 /**
- * CRUD Auteurs
+ * CRUD Auteurs.
  */
 Route::get('/authors/create', 'AuthorsController@new')->name('admin.authors.create');
 Route::get('/authors', 'AuthorsController@index')->name('admin.authors.index');
@@ -23,7 +23,7 @@ Route::post('/authors/create', 'AuthorsController@create')->name('admin.authors.
 Route::post('/authors/update/{author}', 'AuthorsController@submitUpdate')->name('admin.authors.update');
 
 /**
- * CRUD Livres
+ * CRUD Livres.
  */
 Route::get('/books/create', 'BooksController@newBook')->name('admin.books.create');
 
