@@ -56,7 +56,7 @@ return [
         ],
 
         's3' => [
-            'driver' => 's3',
+            'driver'   => 's3',
             'key'      => env('AWS_ACCESS_KEY_ID'),
             'secret'   => env('AWS_SECRET_ACCESS_KEY'),
             'region'   => 'fr-par',
@@ -72,7 +72,7 @@ return [
             'region' => 'fr-par',
             'bucket' => 'tototheque',
             'url'    => 'https://s3.fr-par.scw.cloud',
-        ]
+        ],
 
     ],
 

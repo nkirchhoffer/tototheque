@@ -68,12 +68,13 @@ class AuthorsController extends Controller
         $author->died_at = $diedAt;
         $author->save();
 
-        return redirect()->route('admin.authors.index')->with('success', 'Les informations de ' . $author->lastname . ' ont bien été modifiées !');
+        return redirect()->route('admin.authors.index')->with('success', 'Les informations de '.$author->lastname.' ont bien été modifiées !');
     }
 
     public function delete(Author $author)
     {
         $author->delete();
+
         return redirect()->back()->with('success', 'Cet auteur a bien été supprimé !');
     }
 }

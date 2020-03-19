@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Author;
 use App\Book;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateBookRequest;
-use Illuminate\Http\Request;
-use Illuminate\Auth\AuthManager;
-use App\Author;
 use App\Publisher;
+use Illuminate\Auth\AuthManager;
 
 class BooksController extends Controller
 {
@@ -24,7 +23,7 @@ class BooksController extends Controller
     public function index()
     {
         return view('admin.books.index', [
-            'books' => Book::paginate(10)
+            'books' => Book::paginate(10),
         ]);
     }
 
@@ -50,9 +49,9 @@ class BooksController extends Controller
         }
 
         $filename = uniqid();
-        $path = $cover->storeAs('covers', $filename . '.' . $cover->extension(), 's3');
+        $path = $cover->storeAs('covers', $filename.'.'.$cover->extension(), 's3');
 
-        $book = new Book;
+        $book = new Book();
         $book->title = $title;
         $book->description = $description;
         $book->user_id = $request->user()->id;
@@ -64,6 +63,6 @@ class BooksController extends Controller
             $book->authors()->attach($author);
         }
 
-        return redirect()->route('admin.books.index')->with('success', 'Le livre ' . $book->title . ' a bien été créé !');
+        return redirect()->route('admin.books.index')->with('success', 'Le livre '.$book->title.' a bien été créé !');
     }
- }
+}

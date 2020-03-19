@@ -27,15 +27,15 @@ class AWSS3ServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Storage::extend('s3', function($app, $config) {
+        Storage::extend('s3', function ($app, $config) {
             $client = new S3Client([
                 'credentials' => [
                     'key'    => $config['key'],
                     'secret' => $config['secret'],
                 ],
-                'region' => $config['region'],
-                'version' => $config['version'],
-                'endpoint' => $config['endpoint']
+                'region'   => $config['region'],
+                'version'  => $config['version'],
+                'endpoint' => $config['endpoint'],
             ]);
 
             return new Filesystem(new AwsS3Adapter($client, $config['bucket_name']));
