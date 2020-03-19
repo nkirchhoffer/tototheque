@@ -7,8 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCategoryRequest;
 use Illuminate\Auth\AuthManager;
 
-class CategoriesController extends Controller {
-
+class CategoriesController extends Controller
+{
     private $auth;
 
     public function __construct(AuthManager $auth)
@@ -20,7 +20,7 @@ class CategoriesController extends Controller {
     public function index()
     {
         return view('admin.categories.index', [
-            'categories' => Category::paginate(10)
+            'categories' => Category::paginate(10),
         ]);
     }
 
@@ -34,13 +34,13 @@ class CategoriesController extends Controller {
         $name = $request->get('name');
         $description = $request->get('description');
 
-        $category = new Category;
+        $category = new Category();
         $category->name = $name;
         $category->description = $description;
         $category->user_id = $request->user()->id;
         $category->save();
 
-        return redirect()->route('admin.categories.index')->with('success', 'La catégorie ' . $category->name . ' a bien été créée !');
+        return redirect()->route('admin.categories.index')->with('success', 'La catégorie '.$category->name.' a bien été créée !');
     }
 
     public function update(Category $category)
@@ -57,7 +57,7 @@ class CategoriesController extends Controller {
         $category->description = $description;
         $category->save();
 
-        return redirect()->route('admin.categories.index')->with('success', 'La catégorie ' . $category->name . ' a bien été modifiée !');
+        return redirect()->route('admin.categories.index')->with('success', 'La catégorie '.$category->name.' a bien été modifiée !');
     }
 
     public function delete(Category $category)
@@ -66,5 +66,4 @@ class CategoriesController extends Controller {
 
         return redirect()->back()->with('success', 'La catégorie a bien été supprimée.');
     }
-
 }
