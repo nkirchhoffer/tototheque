@@ -34,7 +34,7 @@ Route::post('/books/create', 'BooksController@submitNewBook')->name('admin.books
 Route::post('/books/update/{book}', 'BooksController@submitUpdate')->name('admin.books.update');
 
 /**
- * CRUD Catégories
+ * CRUD Catégories.
  */
 Route::get('/categories/create', 'CategoriesController@create')->name('admin.categories.create');
 Route::get('/categories', 'CategoriesController@index')->name('admin.categories.index');
@@ -45,7 +45,7 @@ Route::post('/categories/create', 'CategoriesController@submitCreate')->name('ad
 Route::post('/categories/update/{category}', 'CategoriesController@submitUpdate')->name('admin.categories.update');
 
 /**
- * CRUD Editeurs
+ * CRUD Editeurs.
  */
 Route::get('/publishers/create', 'PublishersController@create')->name('admin.publishers.create');
 Route::get('/publishers', 'PublishersController@index')->name('admin.publishers.index');
