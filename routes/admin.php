@@ -27,11 +27,25 @@ Route::post('/authors/update/{author}', 'AuthorsController@submitUpdate')->name(
  */
 Route::get('/books/create', 'BooksController@newBook')->name('admin.books.create');
 Route::get('/books', 'BooksController@index')->name('admin.books.index');
+Route::get('/books/update/{book}', 'BooksController@update')->name('admin.books.update');
+Route::get('/books/delete/{book}', 'BooksController@delete')->name('admin.books.delete');
 
 Route::post('/books/create', 'BooksController@submitNewBook')->name('admin.books.create');
+Route::post('/books/update/{book}', 'BooksController@submitUpdate')->name('admin.books.update');
 
 /**
- * CRUD Editeurs.
+ * CRUD Catégories
+ */
+Route::get('/categories/create', 'CategoriesController@create')->name('admin.categories.create');
+Route::get('/categories', 'CategoriesController@index')->name('admin.categories.index');
+Route::get('/categories/update/{category}', 'CategoriesController@update')->name('admin.categories.update');
+Route::get('/categories/delete/{category}', 'CategoriesController@delete')->name('admin.categories.delete');
+
+Route::post('/categories/create', 'CategoriesController@submitCreate')->name('admin.categories.create');
+Route::post('/categories/update/{category}', 'CategoriesController@submitUpdate')->name('admin.categories.update');
+
+/**
+ * CRUD Editeurs
  */
 Route::get('/publishers/create', 'PublishersController@create')->name('admin.publishers.create');
 Route::get('/publishers', 'PublishersController@index')->name('admin.publishers.index');

@@ -2686,6 +2686,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2693,10 +2712,15 @@ __webpack_require__.r(__webpack_exports__);
       books: []
     };
   },
+  methods: {
+    cover: function cover(path) {
+      return 'https://tototheque.s3.fr-par.scw.cloud/' + path;
+    }
+  },
   mounted: function mounted() {
     var _this = this;
 
-    _http__WEBPACK_IMPORTED_MODULE_0__["default"].get('/books/all').then(function (res) {
+    _http__WEBPACK_IMPORTED_MODULE_0__["default"].get('/books').then(function (res) {
       res.json().then(function (data) {
         _this.books = data;
       });
@@ -4950,15 +4974,17 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "home-page" }, [
+    _vm._m(0),
+    _vm._v(" "),
     _c(
       "section",
-      { staticClass: "books" },
+      { staticClass: "grid grid-cols-3 gap-4 my-4" },
       _vm._l(_vm.books, function(book) {
         return _c(
           "router-link",
           {
             key: book.id,
-            staticClass: "rounded overflow-hidden shadow-lg w-1/4",
+            staticClass: "max-w-sm rounded overflow-hidden shadow-lg",
             attrs: {
               tag: "article",
               to: { name: "book", params: { id: book.id } }
@@ -4967,17 +4993,14 @@ var render = function() {
           [
             _c("img", {
               staticClass: "ml-auto mr-auto",
-              attrs: { id: "couverture", src: book.cover_url }
+              attrs: { id: "couverture", src: _vm.cover(book.cover_url) }
             }),
             _vm._v(" "),
             _c("div", { staticClass: "px-6 py-4" }, [
               _c(
                 "header",
                 { staticClass: "font-bold text-gray-900 text-xl mb-2" },
-                [
-                  _vm._v(_vm._s(book.title) + " "),
-                  _c("small", [_vm._v(_vm._s(book.author.firstname))])
-                ]
+                [_vm._v(_vm._s(book.title))]
               ),
               _vm._v(" "),
               _c("p", { staticClass: "text-gray-700 text-base" }, [
@@ -5020,9 +5043,7 @@ var render = function() {
         )
       }),
       1
-    ),
-    _vm._v(" "),
-    _vm._m(0)
+    )
   ])
 }
 var staticRenderFns = [

@@ -16,11 +16,11 @@ class BookController extends Controller
 
     public function all()
     {
-        return $this->books->with(['author', 'publisher', 'user'])->orderBy('created_at', 'desc')->get();
+        return $this->books->with(['authors', 'categories', 'user'])->orderBy('created_at', 'desc')->get();
     }
 
     public function get(Book $book)
     {
-        return $this->books->with(['author', 'publisher', 'user'])->find($book->id);
+        return $this->books->with(['authors', 'categories', 'user'])->find($book->id);
     }
 }
