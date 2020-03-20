@@ -18,6 +18,7 @@ class ReplicasTableSeeder extends Seeder
                     'book_id'      => $i,
                     'publisher_id' => $j,
                     'isbn'         => 1234567891012,
+                    'cover_url'    => 'covers/5e714252e3df8.png',
                     'state'        => '0',
                     'published_at' => now()->subYears(30),
                     'bought_at'    => now(),

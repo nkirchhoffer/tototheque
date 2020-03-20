@@ -18,6 +18,7 @@ class CreateReplicasTable extends Migration
             $table->bigInteger('book_id')->unsigned();
             $table->bigInteger('publisher_id')->unsigned();
             $table->bigInteger('isbn')->unsigned();
+            $table->text('cover_url');
             $table->enum('state', [0, 1, 2, 3])->default(0);
             $table->timestamp('published_at');
             $table->timestamp('bought_at')->nullable();

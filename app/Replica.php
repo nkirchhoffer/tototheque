@@ -9,7 +9,7 @@ class Replica extends Model
     protected $table = 'replicas';
     protected $primaryKey = 'id';
 
-    public $dates = ['published_at', 'created_at', 'updated_at'];
+    public $dates = ['published_at', 'created_at', 'published_at', 'bought_at', 'updated_at'];
 
     public function book()
     {

@@ -34,6 +34,16 @@ Route::post('/books/create', 'BooksController@submitNewBook')->name('admin.books
 Route::post('/books/update/{book}', 'BooksController@submitUpdate')->name('admin.books.update');
 
 /**
+ * CRUD Réplicas
+ */
+Route::get('/books/{book}', 'ReplicasController@index')->name('admin.replicas.index');
+Route::get('/books/{book}/create', 'ReplicasController@create')->name('admin.replicas.create');
+Route::get('/replicas/update/{replica}', 'ReplicasController@update')->name('admin.replicas.update');
+Route::get('/replicas/delete/{replica}', 'ReplicasController@delete')->name('admin.replicas.delete');
+
+Route::post('/books/{book}/create', 'ReplicasController@submitCreate')->name('admin.replicas.create');
+Route::post('/replicas/update/{replica}', 'ReplicasController@submitUpdate')->name('admin.replicas.update');
+/**
  * CRUD Catégories.
  */
 Route::get('/categories/create', 'CategoriesController@create')->name('admin.categories.create');

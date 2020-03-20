@@ -28,12 +28,12 @@
                                 @endforeach
                             </td>
                             <td>{{ substr($book->description, 0, 50) }} {{ (strlen($book->description) > 50) ? '...' : '' }}</td>
-                            <td><a href="{{ \Illuminate\Support\Facades\Storage::disk('s3')->url($book->cover_url) }}" target="_blank" class="btn btn-sm btn-info">Voir la couverture</a></td>
+                            <td><a href="{{ \Illuminate\Support\Facades\Storage::disk('s3')->url($book->cover_url) }}" target="_blank" class="btn btn-sm btn-info"><i class="fas fa-search"></i></a></td>
                             <td>{{ $book->published_at->toDateString() }}</td>
                             <td>
-                                <a href="#" class="btn btn-primary"><i class="fas fa-info"></i></a>
-                                <a href="#" class="btn btn-warning" style="color: #FFF"><i class="far fa-edit"></i></a>
-                                <a href="#" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                <a href="{{ route('admin.replicas.index', ['book' => $book]) }}" class="btn btn-primary"><i class="fas fa-info"></i></a>
+                                <a href="{{ route('admin.books.update', ['book' => $book]) }}" class="btn btn-warning" style="color: #FFF"><i class="far fa-edit"></i></a>
+                                <a href="{{ route('admin.books.delete', ['book' => $book]) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                             </td>
                         </tr>
                     @endforeach
