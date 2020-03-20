@@ -76,9 +76,9 @@ class BooksController extends Controller
     public function update(Book $book)
     {
         return view('admin.books.update', [
-            'book' => $book,
+            'book'       => $book,
             'categories' => Category::all(),
-            'authors' => Author::all()
+            'authors'    => Author::all(),
         ]);
     }
 
@@ -97,7 +97,7 @@ class BooksController extends Controller
             }
 
             $filename = uniqid();
-            $path = $cover->storeAs('covers', $filename . '.' . $cover->extension(), 's3');
+            $path = $cover->storeAs('covers', $filename.'.'.$cover->extension(), 's3');
             $book->cover_url = $path;
             Storage::disk('s3')->setVisibility($path, 'public');
         }
@@ -124,7 +124,6 @@ class BooksController extends Controller
             $book->categories()->attach($category);
         }
 
-        return redirect()->route('admin.books.index')->with('success', 'Le livre ' . $book->title . ' a bien été édité !');
-
+        return redirect()->route('admin.books.index')->with('success', 'Le livre '.$book->title.' a bien été édité !');
     }
 }

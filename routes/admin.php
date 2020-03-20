@@ -34,7 +34,7 @@ Route::post('/books/create', 'BooksController@submitNewBook')->name('admin.books
 Route::post('/books/update/{book}', 'BooksController@submitUpdate')->name('admin.books.update');
 
 /**
- * CRUD Réplicas
+ * CRUD Réplicas.
  */
 Route::get('/books/{book}', 'ReplicasController@index')->name('admin.replicas.index');
 Route::get('/books/{book}/create', 'ReplicasController@create')->name('admin.replicas.create');
