@@ -24,12 +24,12 @@ class UpdateReplicaRequest extends FormRequest
     public function rules()
     {
         return [
-            'publisher' => 'required|exists:publishers,id',
-            'isbn' => 'required|digits:13',
-            'cover' => 'nullable|file|image',
-            'state' => 'required|digits:1',
+            'publisher'   => 'required|exists:publishers,id',
+            'isbn'        => 'required|digits:13',
+            'cover'       => 'nullable|file|image',
+            'state'       => 'required|digits:1',
             'publishedAt' => 'required|date',
-            'boughtAt' => 'required|date'
+            'boughtAt'    => 'required|date',
         ];
     }
 }
