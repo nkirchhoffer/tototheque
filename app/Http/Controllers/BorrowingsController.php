@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-class BorrowingsController extends Controller {
-
+class BorrowingsController extends Controller
+{
     private $auth;
 
     public function __construct(AuthManager $auth)
@@ -17,5 +17,4 @@ class BorrowingsController extends Controller {
     {
         //
     }
-
 }
