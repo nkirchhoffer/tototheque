@@ -9,7 +9,6 @@ use Illuminate\Auth\AuthManager;
 
 class UserController extends Controller
 {
-
     private $auth;
 
     public function __construct(AuthManager $auth)
