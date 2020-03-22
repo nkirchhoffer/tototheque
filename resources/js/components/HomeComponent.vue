@@ -36,49 +36,50 @@
     <section class="grid grid-cols-3 gap-4 my-4">
       <!--Présentation de livre-->
 
-      <router-link tag="article" :to="{ name: 'book', params: {id: book.id} }" class="max-w-sm rounded overflow-hidden shadow-lg" v-for="book in books" :key="book.id">
-        <img id="couverture" class="ml-auto mr-auto" :src="cover(book.cover_url)">
-        <div class="px-6 py-4">
+      <article class="book max-w-sm rounded overflow-hidden shadow-lg" v-for="book in books" :key="book.id">
+        <div class="bg-white"><router-link tag="img" class="couverture" :to="{ name: 'book', params: {id: book.id} }" id="couverture" :src="cover(book.cover_url)"></router-link></div>
+        <div class="px-6 py-4 bg-gray-300">
           <header class="font-bold text-gray-900 text-xl mb-2">{{ book.title }}</header>
           <p
                   class="text-gray-700 text-base"
           >{{ book.description }}</p>
         </div>
-        <footer class="flex px-6 py-4">
+        <footer class="flex px-6 py-4 bg-gray-300">
           <span
-                  class="flex-1 flex bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                  class="button"
           >
-            <img class="flex w-6 mr-2" src="/img/iconfinder_star_1054969.png">Nouveauté
+            <img class="flex w-6 mr-2" src="/img/iconfinder_star_1054969.png">{{ fullname(book.authors[0]) }}
           </span>
           <span
-                  class="flex-1 flex bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                  class="button"
           >
-            <img class="flex w-6 mr-2" src="/img/iconfinder_heart_1055045.png">Coup de cœur
+            <img class="flex w-6 mr-2" src="/img/iconfinder_heart_1055045.png">{{ book.categories[0].name }}
           </span>
-        </footer>
-      </router-link>
-    </section>
-
-    <!--<section class="flex content-around">
-      <article class="max-w-sm rounded overflow-hidden shadow-lg mt-10 ml-auto" v-for="book in books" :key="article.id">
-        <img class="ml-auto mr-auto" :src="cover(book.cover_url)">
-        <div class="px-6 py-4">
-          <header class="font-bold text-gray-900 text-xl mb-2">{{ book.title }}</header>
-          <p class="text-gray-700 text-base">
-            {{ book.description }}
-          </p>
-        </div>
-        <footer class="flex px-6 py-4">
-          <span class="flex-1 flex bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"><img class="flex w-6 mr-2" src="img/iconfinder_star_1054969.png">Nouveauté</span>
-          <span class="flex-1 flex bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"><img class="flex w-6 mr-2" src="img/iconfinder_heart_1055045.png">Coup de cœur</span>
         </footer>
       </article>
-    </section>-->
+    </section>
 
   </section>
 </template>
 
 <style lang="scss">
+  .book > img {
+    cursor: pointer;
+  }
+  .couverture {
+    @apply ml-auto mr-auto h-full;
+  }
+  .couverture:hover {
+    //@apply opacity-50;
+    cursor: pointer;
+  }
+  .button {
+    @apply flex-1 flex bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2;
+  }
+  .button:hover {
+    @apply bg-gray-500;
+  }
+
 
 </style>
 
@@ -95,6 +96,10 @@ export default {
   methods: {
     cover(path) {
       return 'https://tototheque.s3.fr-par.scw.cloud/' + path
+    },
+
+    fullname(author) {
+      return author.firstname + ' ' + author.lastname.toUpperCase()
     },
   },
 

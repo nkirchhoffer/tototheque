@@ -23,9 +23,12 @@
                     </form>
                 </li>
                 <li class="flex-1 ml-64 mr-auto">
-                    <router-link :to="{ name: 'login' }" class=" border border-indigo-500 rounded py-1 px-3 bg-transparent hover:bg-indigo-600 hover:border-indigo-500 hover:text-white text-indigo-500" tag="button">
+                    <router-link :to="{ name: 'login' }" v-if="user === null" class=" border border-indigo-500 rounded py-1 px-3 bg-transparent hover:bg-indigo-600 hover:border-indigo-500 hover:text-white text-indigo-500" tag="button">
                         Se connecter
                     </router-link>
+                    <button v-on:click="logout()" v-if="user !== null" class=" border border-indigo-500 rounded py-1 px-3 hover:bg-transparent bg-indigo-600 hover:border-indigo-500 text-white hover:text-indigo-500">
+                        Déconnexion
+                    </button>
                 </li>
             </ul>
         </header>

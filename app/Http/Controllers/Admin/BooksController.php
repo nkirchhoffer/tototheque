@@ -53,6 +53,7 @@ class BooksController extends Controller
 
         $filename = uniqid();
         $path = $cover->storeAs('covers', $filename.'.'.$cover->extension(), 's3');
+        Storage::disk('s3')->setVisibility($path, 'public');
 
         $book = new Book();
         $book->title = $title;
@@ -62,11 +63,11 @@ class BooksController extends Controller
         $book->published_at = $publishedAt;
         $book->save();
 
-        foreach ($request->get('authors') as $author) {
+        foreach ($authors as $author) {
             $book->authors()->attach($author);
         }
 
-        foreach ($request->get('categories') as $category) {
+        foreach ($categories as $category) {
             $book->categories()->attach($category);
         }
 

@@ -21,6 +21,6 @@ class BookController extends Controller
 
     public function get(Book $book)
     {
-        return $this->books->with(['authors', 'categories', 'user'])->find($book->id);
+        return $this->books->with(['authors', 'replicas.publisher', 'categories', 'user'])->find($book->id);
     }
 }

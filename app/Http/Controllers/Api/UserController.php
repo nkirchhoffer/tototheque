@@ -9,6 +9,7 @@ use App\User;
 use App\VerificationToken;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
@@ -54,7 +55,7 @@ class UserController extends Controller
         $token->user_id = $user->id;
         $token->save();
 
-        Mail::to($user)->send(new VerifyMailAddress($token, $user));
+        Mail::to($user)->queue(new VerifyMailAddress($token, $user));
 
         return ['status' => 'success', 'message' => 'Votre compte a bien été créé. Un mail de confirmation vous a été envoyé, veuillez cliquer sur le lien renseigné.'];
     }
