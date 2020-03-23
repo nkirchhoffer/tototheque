@@ -20,21 +20,21 @@ class BorrowingsController extends Controller
     public function index()
     {
         return view('admin.borrowings.index', [
-            'borrowings' => Borrowing::where('starting_at', '!=', null)->where('started_at', '=', null)->where('cancelled_at', '=', NULL)->orderBy('created_at', 'desc')->paginate(20),
+            'borrowings' => Borrowing::where('starting_at', '!=', null)->where('started_at', '=', null)->where('cancelled_at', '=', null)->orderBy('created_at', 'desc')->paginate(20),
         ]);
     }
 
     public function current()
     {
         return view('admin.borrowings.current', [
-            'borrowings' => Borrowing::where('started_at', '!=', NULL)->where('finished_at', '=', NULL)->where('cancelled_at', '=', NULL)->orderBy('created_at', 'desc')->paginate(20),
+            'borrowings' => Borrowing::where('started_at', '!=', null)->where('finished_at', '=', null)->where('cancelled_at', '=', null)->orderBy('created_at', 'desc')->paginate(20),
         ]);
     }
 
     public function finished()
     {
         return view('admin.borrowings.finished', [
-            'borrowings' => Borrowing::where('finished_at', '!=', NULL)->orWhere('cancelled_at', '!=', NULL)->orderBy('created_at', 'desc')->paginate(20),
+            'borrowings' => Borrowing::where('finished_at', '!=', null)->orWhere('cancelled_at', '!=', null)->orderBy('created_at', 'desc')->paginate(20),
         ]);
     }
 
@@ -59,7 +59,6 @@ class BorrowingsController extends Controller
 
         return redirect()->route('admin.borrowings.index')->with('success', 'L\'emprunt de '.$borrowing->replica->book->title.' par '.$borrowing->user->name.' a bien été validé !');
     }
-
 
     public function withdraw(Borrowing $borrowing)
     {

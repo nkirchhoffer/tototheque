@@ -25,7 +25,7 @@ class PostponeBorrowingRequest extends FormRequest
     {
         return [
             'startedAt'   => 'required|date',
-            'finishingAt' => 'required|date|after:startedAt|after:now'
+            'finishingAt' => 'required|date|after:startedAt|after:now',
         ];
     }
 }

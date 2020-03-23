@@ -4,10 +4,10 @@ namespace App\Notifications;
 
 use App\Borrowing;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Messages\NexmoMessage;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\NexmoMessage;
+use Illuminate\Notifications\Notification;
 
 class PostponedBorrowingNotification extends Notification implements ShouldQueue
 {
@@ -28,7 +28,8 @@ class PostponedBorrowingNotification extends Notification implements ShouldQueue
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
@@ -39,12 +40,13 @@ class PostponedBorrowingNotification extends Notification implements ShouldQueue
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage())
                     ->subject('Prolongation de votre emprunt')
                     ->greeting('Cher(e) '.$notifiable->name.',')
                     ->line('Votre date de rendu pour l\'emprunt de **'.$this->borrowing->replica->book->title.'** a été reportée au **'.$this->borrowing->finishing_at->locale('fr_FR')->isoFormat('LL').' à 20h00**.')
@@ -54,7 +56,7 @@ class PostponedBorrowingNotification extends Notification implements ShouldQueue
 
     public function toNexmo($notifiable)
     {
-        return (new NexmoMessage)
+        return (new NexmoMessage())
                     ->content('La date de rendu de votre emprunt de '.$this->borrowing->replica->book->title.' a été reportée au '.$this->borrowing->finishing_at->locale('fr_FR')->isoFormat('LL').' à 20h. Merci !')
                     ->unicode();
     }
@@ -62,7 +64,8 @@ class PostponedBorrowingNotification extends Notification implements ShouldQueue
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function toArray($notifiable)
