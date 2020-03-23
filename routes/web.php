@@ -11,7 +11,7 @@ Route::get('/member/register', 'AppController@render')->name('register');
 Route::get('/books/{book}', 'AppController@render')->name('book');
 
 /**
- * Gestion des emprunts
+ * Gestion des emprunts.
  */
 Route::get('/borrowings/cancel/{borrowing}', 'BorrowingsController@cancel')->name('borrowings.cancel');
 

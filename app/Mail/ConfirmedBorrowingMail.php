@@ -6,11 +6,11 @@ use App\Borrowing;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class ConfirmedBorrowingMail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     private $borrowing;
 
@@ -18,6 +18,7 @@ class ConfirmedBorrowingMail extends Mailable
      * Create a new message instance.
      *
      * @param Borrowing $borrowing
+     *
      * @return void
      */
     public function __construct(Borrowing $borrowing)

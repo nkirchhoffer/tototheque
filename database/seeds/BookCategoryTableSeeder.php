@@ -16,17 +16,17 @@ class BookCategoryTableSeeder extends Seeder
 
         foreach ($books as $book) {
             DB::table('book_category')->insert([
-                'book_id' => $book->id,
+                'book_id'     => $book->id,
                 'category_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
+                'created_at'  => now(),
+                'updated_at'  => now(),
             ]);
 
             DB::table('book_category')->insert([
-                'book_id' => $book->id,
+                'book_id'     => $book->id,
                 'category_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
+                'created_at'  => now(),
+                'updated_at'  => now(),
             ]);
         }
     }
