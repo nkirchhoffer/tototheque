@@ -33,7 +33,11 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.borrowings.validate', $borrowing) }}" class="btn btn-sm btn-success"><i class="fas fa-check"></i></a>
+                                    @if (is_null($borrowing->validated_at))
+                                        <a href="{{ route('admin.borrowings.validate', $borrowing) }}" class="btn btn-sm btn-success"><i class="fas fa-check"></i></a>
+                                    @else
+                                        <a href="{{ route('admin.borrowings.withdraw', $borrowing) }}" class="btn btn-sm btn-success"><i class="fas fa-check"></i></a>
+                                    @endif
                                     <a href="{{ route('admin.borrowings.cancel', $borrowing) }}" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a>
                                 </td>
                             </tr>

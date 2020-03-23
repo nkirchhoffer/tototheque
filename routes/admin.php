@@ -58,10 +58,16 @@ Route::post('/categories/update/{category}', 'CategoriesController@submitUpdate'
  * CRUD Emprunts.
  */
 Route::get('/borrowings', 'BorrowingsController@index')->name('admin.borrowings.index');
+Route::get('/borrowings/current', 'BorrowingsController@current')->name('admin.borrowings.current');
+Route::get('/borrowings/finished', 'BorrowingsController@finished')->name('admin.borrowings.finished');
+Route::get('/borrowings/postpone/{borrowing}', 'BorrowingsController@postpone')->name('admin.borrowings.postpone');
+Route::get('/borrowings/deposit/{borrowing}', 'BorrowingsController@deposit')->name('admin.borrowings.deposit');
 Route::get('/borrowings/validate/{borrowing}', 'BorrowingsController@validation')->name('admin.borrowings.validate');
+Route::get('/borrowings/withdraw/{borrowing}', 'BorrowingsController@withdraw')->name('admin.borrowings.withdraw');
 Route::get('/borrowings/cancel/{borrowing}', 'BorrowingsController@cancel')->name('admin.borrowings.cancel');
 
 Route::post('/borrowings/validate/{borrowing}', 'BorrowingsController@submitValidation')->name('admin.borrowings.validate');
+Route::post('/borrowings/postpone/{borrowing}', 'BorrowingsController@submitPostpone')->name('admin.borrowings.postpone');
 /**
  * CRUD Editeurs.
  */

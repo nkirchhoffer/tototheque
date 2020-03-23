@@ -34,4 +34,13 @@ class Borrowing extends Model
     {
         return $this->hasOneThrough(Book::class, Replica::class);
     }
+
+    public function late()
+    {
+        if (is_null($this->finished_at)) {
+            return now()->diffInDays($this->finishing_at, false);
+        } else {
+            return $this->finished_at->diffInDays($this->finishing_at, false);
+        }
+    }
 }
