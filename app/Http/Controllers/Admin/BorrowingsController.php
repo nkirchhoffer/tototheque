@@ -8,8 +8,8 @@ use App\Http\Requests\ValidateBorrowingRequest;
 use App\Notifications\CancelledBorrowingNotification;
 use App\Notifications\ValidatedBorrowingNotification;
 
-class BorrowingsController extends Controller {
-
+class BorrowingsController extends Controller
+{
     public function __construct()
     {
         $this->middleware('permission:manage_borrowings');
@@ -18,14 +18,14 @@ class BorrowingsController extends Controller {
     public function index()
     {
         return view('admin.borrowings.index', [
-            'borrowings' => Borrowing::where('starting_at', '!=', NULL)->where('started_at', '=', NULL)->orderBy('created_at', 'desc')->paginate(10),
+            'borrowings' => Borrowing::where('starting_at', '!=', null)->where('started_at', '=', null)->orderBy('created_at', 'desc')->paginate(10),
         ]);
     }
 
     public function validation(Borrowing $borrowing)
     {
         return view('admin.borrowings.validate', [
-            'borrowing' => $borrowing
+            'borrowing' => $borrowing,
         ]);
     }
 
@@ -41,7 +41,7 @@ class BorrowingsController extends Controller {
 
         $borrowing->user->notify(new ValidatedBorrowingNotification($borrowing));
 
-        return redirect()->route('admin.borrowings.index')->with('success', 'L\'emprunt de '.$borrowing->replica->book->title. ' par '.$borrowing->user->name.' a bien été validé !');
+        return redirect()->route('admin.borrowings.index')->with('success', 'L\'emprunt de '.$borrowing->replica->book->title.' par '.$borrowing->user->name.' a bien été validé !');
     }
 
     public function cancel(Borrowing $borrowing)
@@ -53,5 +53,4 @@ class BorrowingsController extends Controller {
 
         return redirect()->route('admin.borrowings.index')->with('success', 'L\'emprunt de '.$borrowing->replica->book->title.' par '.$borrowing->user->name.' a bien été annulé.');
     }
-
 }

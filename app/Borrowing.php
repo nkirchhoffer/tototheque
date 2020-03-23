@@ -17,7 +17,7 @@ class Borrowing extends Model
         'created_at',
         'updated_at',
         'validated_at',
-        'cancelled_at'
+        'cancelled_at',
     ];
 
     public function user()
