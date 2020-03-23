@@ -46,6 +46,7 @@ class ConfirmedBorrowingNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->subject('Confirmation de votre emprunt')
             ->greeting('Cher(e) '.$notifiable->name.',')
             ->line('Nous avons bien reçu votre demande d\'emprunt de **'.$this->borrowing->replica->book->title.'**.')
             ->line('Cet emprunt débuterait le **'.$this->borrowing->starting_at->locale('fr_FR')->isoFormat('LL'). '** et se terminerait le **'.$this->borrowing->finishing_at->locale('fr_FR')->isoFormat('LL').'**.')

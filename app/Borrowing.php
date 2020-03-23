@@ -9,7 +9,16 @@ class Borrowing extends Model
     protected $table = 'borrowings';
     protected $primaryKey = 'id';
 
-    public $dates = ['started_at', 'starting_at', 'finishing_at', 'finished_at', 'created_at', 'updated_at'];
+    public $dates = [
+        'started_at',
+        'starting_at',
+        'finishing_at',
+        'finished_at',
+        'created_at',
+        'updated_at',
+        'validated_at',
+        'cancelled_at'
+    ];
 
     public function user()
     {

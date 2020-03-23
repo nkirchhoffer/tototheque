@@ -21,6 +21,8 @@ class CreateBorrowingsTable extends Migration
             $table->timestamp('started_at')->nullable();
             $table->timestamp('finishing_at')->nullable();
             $table->timestamp('finished_at')->nullable();
+            $table->timestamp('validated_at')->nullable();
+            $table->timestamp('cancelled_at')->nullable();
             $table->timestamps();
 
             $table->foreign('replica_id')->references('id')->on('replicas')->onDelete('cascade');

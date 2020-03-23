@@ -55,6 +55,14 @@ Route::post('/categories/create', 'CategoriesController@submitCreate')->name('ad
 Route::post('/categories/update/{category}', 'CategoriesController@submitUpdate')->name('admin.categories.update');
 
 /**
+ * CRUD Emprunts
+ */
+Route::get('/borrowings', 'BorrowingsController@index')->name('admin.borrowings.index');
+Route::get('/borrowings/validate/{borrowing}', 'BorrowingsController@validation')->name('admin.borrowings.validate');
+Route::get('/borrowings/cancel/{borrowing}', 'BorrowingsController@cancel')->name('admin.borrowings.cancel');
+
+Route::post('/borrowings/validate/{borrowing}', 'BorrowingsController@submitValidation')->name('admin.borrowings.validate');
+/**
  * CRUD Editeurs.
  */
 Route::get('/publishers/create', 'PublishersController@create')->name('admin.publishers.create');

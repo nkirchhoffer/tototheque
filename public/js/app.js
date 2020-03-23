@@ -2768,11 +2768,11 @@ moment__WEBPACK_IMPORTED_MODULE_1___default()().locale('fr');
         _this.error = null;
         _this.success = null;
         res.json().then(function (data) {
-          if (res.statusCode != 200) {
+          if (data.status === 200) {
+            _this.success = data.message;
+          } else {
             _this.error = data.message;
           }
-
-          _this.success = data.message;
         });
       });
     }

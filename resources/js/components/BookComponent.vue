@@ -191,11 +191,11 @@
                     this.error = null
                     this.success = null
                     res.json().then(data => {
-                        if (res.statusCode != 200) {
+                        if (data.status === 200) {
+                            this.success = data.message
+                        } else {
                             this.error = data.message
                         }
-
-                        this.success = data.message
                     })
                 })
             }
