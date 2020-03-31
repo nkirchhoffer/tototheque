@@ -17,7 +17,7 @@ Route::get('/borrowings/cancel/{borrowing}', 'BorrowingsController@cancel')->nam
 
 Route::get('/verification/{VerificationToken}', 'UserController@verify')->name('verification');
 
-Route::get('/test', function() {
+Route::get('/test', function () {
     App\Book::find(1)->getIsBorrowedAttribute();
 });
 
