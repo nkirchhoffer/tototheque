@@ -23,4 +23,9 @@ class BookController extends Controller
     {
         return $this->books->with(['authors', 'replicas.publisher', 'categories', 'user'])->find($book->id);
     }
+
+    public function search($search)
+    {
+        return $this->books->where('title', 'LIKE', '%'.$search.'%')->get();
+    }
 }

@@ -3,8 +3,8 @@
         <section class="hero is-info">
             <div class="hero-body">
                 <div class="container">
-                    <h1 class="title">S'inscrire à l'espace</h1>
-                    <h2 class="subtitle">Effectuez des emprunts, déposez des avis...</h2>
+                    <h1 class="title mt-4 text-gray-600 text-4xl">S'inscrire à l'espace membre</h1>
+                    <h2 class="subtitle text-teal-900">Effectuez des emprunts, déposez des avis...</h2>
                 </div>
             </div>
         </section>
@@ -36,14 +36,20 @@
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
                         Mot de passe
                     </label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" v-model="password" id="password" type="password" placeholder="******************">
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" v-model="password" id="password" type="password" placeholder="******************" required/>
                     <p class="text-gray-500 text-xs italic">Doit être compris entre 6 et 64 caractères</p>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
                         Confirmation du mot de passe
                     </label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" v-model="password_confirmation" id="repassword" type="password" placeholder="******************">
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" v-model="password_confirmation" id="repassword" type="password" placeholder="******************" required/>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        Téléphone portable (optionnel)
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" v-model="phone_number" id="phone_number" type="text" placeholder="0600000000">
                 </div>
                 <div class="flex items-center justify-between">
                     <button class="border border-blue-500 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" v-on:click="submit()" type="button">
@@ -69,7 +75,8 @@ export default {
             nick: null,
             email: null,
             password: null,
-            password_confirmation: null
+            password_confirmation: null,
+            phone_number: null
         }
     },
 
@@ -99,6 +106,7 @@ export default {
             data.append('email', email)
             data.append('password', password)
             data.append('password_confirmation', password_confirmation)
+            data.append('phone_number', parseInt(phone_number))
 
             this.$store.dispatch('register', data).then(() => {
                 this.success = 'Votre compte a bien été créé. Un mail vous sera envoyé pour vérifier votre adresse e-mail'

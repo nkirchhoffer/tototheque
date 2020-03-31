@@ -3,8 +3,8 @@
     <section class="hero is-info">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">Connexion à l'espace membre</h1>
-          <h2 class="subtitle">Accédez à vos informations, et empruntez des ouvrages à partir de votre espace membre</h2>
+          <h1 class="title mt-4 text-gray-600 text-4xl">Connexion à l'espace membre</h1>
+          <h2 class="subtitle text-teal-900">Accédez à vos informations, et empruntez des ouvrages à partir de votre espace membre</h2>
         </div>
       </div>
     </section>

@@ -41,12 +41,27 @@ class UserController extends Controller
         $nick = $request->get('nick');
         $email = $request->get('email');
         $password = bcrypt($request->get('password'));
+        $phoneNumber = $request->get('phone_number');
 
         $user = new User();
         $user->name = $name;
         $user->nick = $nick;
         $user->email = $email;
         $user->password = $password;
+
+        if (!is_null($phoneNumber)) {
+            if (strlen($phoneNumber) != 10 && is_null((int)$phoneNumber)) {
+                return response()->json([
+                    'message' => 'Une erreur a été rencontrée',
+                    'errors' => [
+                        'phone_number' => 'Le numéro de téléphone doit faire 10 caractères et être un nombre valide.',
+                    ],
+                ], 422);
+            }
+
+            $user->phone_number = $phoneNumber;
+        }
+
         $user->save();
 
         $token = new VerificationToken();

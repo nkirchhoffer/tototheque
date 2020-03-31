@@ -8,6 +8,7 @@ class Replica extends Model
 {
     protected $table = 'replicas';
     protected $primaryKey = 'id';
+    public $appends = ['is_borrowed'];
 
     public $dates = ['published_at', 'created_at', 'published_at', 'bought_at', 'updated_at'];
 
@@ -24,5 +25,17 @@ class Replica extends Model
     public function borrowings()
     {
         return $this->hasMany(Borrowing::class);
+    }
+
+    public function getIsBorrowedAttribute()
+    {
+        $borrowings = $this->borrowings()->where('starting_at', '!=', NULL)->where('finished_at', '=', NULL)->get();
+
+
+        if ($borrowings->count() > 0) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -30,8 +30,8 @@
                     </li>
 
                     <!--Disponibilité du livre-->
-                    <div class="flex"><img class="h-4 mt-1" src="/img/iconfinder_round_green.png"><p class="ml-1">Disponible</p></div>
-                    <div class="flex"><img class="h-4 mt-1" src="/img/iconfinder_round_red.png"><p class="ml-1">Indisponible</p></div>
+                    <div class="flex" v-if="book.is_borrowable"><img class="h-4 mt-1" src="/img/iconfinder_round_green.png"><p class="ml-1">Disponible</p></div>
+                    <div class="flex" v-if="!book.is_borrowable"><img class="h-4 mt-1" src="/img/iconfinder_round_red.png"><p class="ml-1">Indisponible</p></div>
 
                     <!--Bouton reservation-->
                     <button class="bg-gray-600 hover:bg-gray-700 mt-4 text-white font-bold py-2 px-4 rounded">
@@ -55,7 +55,7 @@
                         <ul>Paru le {{ date(replica.published_at) }}</ul>
                     </li>
                 </article>
-                <button v-on:click="borrow(replica.id)" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded h-10 w-full mt-auto mb-auto">Réserver ce livre</button>
+                <button v-on:click="borrow(replica)" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded h-10 w-full mt-auto mb-auto" :disabled="disabled(replica)">Réserver ce livre</button>
             </article>
 
         </section>
@@ -136,6 +136,10 @@
 
 <style>
     #couverture-livre { width: 250px; height: 325px; }
+    button:disabled {
+        cursor: not-allowed;
+        @apply bg-gray-600;
+    }
 </style>
 
 <script>
@@ -186,18 +190,28 @@
                 return moment(date).format('L')
             },
 
-            borrow(id) {
-                http.get('/replicas/borrow/' + id).then(res => {
-                    this.error = null
-                    this.success = null
-                    res.json().then(data => {
-                        if (data.status === 200) {
-                            this.success = data.message
-                        } else {
-                            this.error = data.message
-                        }
+            borrow(replica) {
+                if (!replica.is_borrowed) {
+                    http.get('/replicas/borrow/' + replica.id).then(res => {
+                        this.error = null
+                        this.success = null
+                        res.json().then(data => {
+                            if (data.status === 200) {
+                                this.success = data.message
+                            } else {
+                                this.error = data.message
+                            }
+                        })
                     })
-                })
+                }
+            },
+
+            disabled(replica) {
+                if (replica.is_borrowed) {
+                    return true
+                }
+
+                return false
             }
         },
 

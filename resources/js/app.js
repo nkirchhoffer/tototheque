@@ -18,8 +18,19 @@ new Vue({
     computed: mapState(['user']),
 
     methods: {
-      logout() {
-        this.$store.dispatch('logoutUser')
+        logout() {
+            this.$store.dispatch('logoutUser')
+        },
+
+        search() {
+            let search = encodeURI(this.search)
+            this.$router.push({ name: 'search', params: {search: search} })
+        }
+    },
+
+    data() {
+      return {
+          search: null
       }
     },
 

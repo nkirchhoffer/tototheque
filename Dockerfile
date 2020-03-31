@@ -1,12 +1,7 @@
-# Utilisation de PHP 7.3 avec FPM
-# voir hub.docker.com/_/php
-FROM php:7.3-fpm
+FROM busybox
 
-# Ajout des fichiers du dépôt dans /var/www/html
-COPY . /var/www/html
+RUN mkdir /code
 
-# Autoriser l'exécution sur deploy.sh
-RUN chmod +x ./deploy.sh
+COPY . /code
 
-# Exécution de deploy.sh
-CMD ["./deploy.sh"]
+CMD ["/bin/sh", "-ec", "while :; do echo '.'; sleep 5 ; done"]

@@ -17,6 +17,10 @@ Route::get('/borrowings/cancel/{borrowing}', 'BorrowingsController@cancel')->nam
 
 Route::get('/verification/{VerificationToken}', 'UserController@verify')->name('verification');
 
+Route::get('/test', function() {
+    App\Book::find(1)->getIsBorrowedAttribute();
+});
+
 Route::post('/member/login', 'UserController@login')->name('login');
 
 Route::get('/auth', function () {
@@ -33,10 +37,6 @@ Route::get('/mail', function () {
 
     return new \App\Mail\VerifyMailAddress($token, $user);
 });
-
-Route::get('/test', function () {
-    dd(Auth::user());
-})->middleware('permission:access_admin');
 
 Route::get('/demo', function () {
     return view('demo');

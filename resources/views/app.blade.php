@@ -18,9 +18,9 @@
             <ul class="flex bg-white text-white p-5">
                 <router-link tag="li" :to="{ name: 'home' }" class="flex-1 ml-64 mr-auto text-2xl text-indigo-500">Totothèque</router-link>
                 <li class="flex-1 ml-32 mr-auto">
-                    <form class="w-full max-w-sm">
-                        <input class="ml-auto mr-auto bg-gray-100 border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:bg-white" id="recherche" type="text" placeholder="Rechercher">
-                    </form>
+                    <section class="w-full max-w-sm">
+                        <input class="ml-auto mr-auto bg-gray-100 border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:bg-white" id="recherche" v-model="search" type="text" v-on:keyup.13="search()" placeholder="Rechercher">
+                    </section>
                 </li>
                 <li class="flex-1 ml-64 mr-auto">
                     <router-link :to="{ name: 'login' }" v-if="user === null" class=" border border-indigo-500 rounded py-1 px-3 bg-transparent hover:bg-indigo-600 hover:border-indigo-500 hover:text-white text-indigo-500" tag="button">

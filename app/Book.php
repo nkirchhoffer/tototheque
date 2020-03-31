@@ -11,6 +11,8 @@ class Book extends Model
 
     protected $table = 'books';
 
+    public $appends = ['is_borrowable'];
+
     public $dates = ['created_at', 'updated_at', 'deleted_at', 'published_at'];
 
     public function authors()
@@ -31,5 +33,18 @@ class Book extends Model
     public function replicas()
     {
         return $this->hasMany(Replica::class);
+    }
+
+    public function getIsBorrowableAttribute()
+    {
+        $borrowed = [];
+
+        foreach($this->replicas as $replica) {
+            if ($replica->getIsBorrowedAttribute()) {
+                $borrowed[] = $replica;
+            }
+        }
+
+        return count($borrowed) !== $this->replicas->count();
     }
 }
