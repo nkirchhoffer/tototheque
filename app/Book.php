@@ -39,7 +39,7 @@ class Book extends Model
     {
         $borrowed = [];
 
-        foreach($this->replicas as $replica) {
+        foreach ($this->replicas as $replica) {
             if ($replica->getIsBorrowedAttribute()) {
                 $borrowed[] = $replica;
             }

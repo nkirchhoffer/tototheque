@@ -29,8 +29,7 @@ class Replica extends Model
 
     public function getIsBorrowedAttribute()
     {
-        $borrowings = $this->borrowings()->where('starting_at', '!=', NULL)->where('finished_at', '=', NULL)->get();
-
+        $borrowings = $this->borrowings()->where('starting_at', '!=', null)->where('finished_at', '=', null)->get();
 
         if ($borrowings->count() > 0) {
             return true;

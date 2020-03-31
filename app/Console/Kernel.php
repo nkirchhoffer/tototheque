@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(new CheckLateBorrowings)->dailyAt('20:00');
+        $schedule->call(new CheckLateBorrowings())->dailyAt('20:00');
     }
 
     /**
