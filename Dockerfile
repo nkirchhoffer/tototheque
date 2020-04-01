@@ -13,6 +13,8 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 RUN curl -sL https://deb.nodesource.com/setup_13.x | bash - \
     && apt-get install -y nodejs
 
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
 COPY . /code
 
 RUN chown -R www-data:www-data /code
