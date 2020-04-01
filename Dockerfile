@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y libmemcached-dev zlib1g-dev git unzip \
     && pecl install memcached-3.1.5 \
     && docker-php-ext-enable memcached
 
-RUN docker-php-ext-install pdo_mysql mbstring bcmath zip
+RUN docker-php-ext-install pdo_mysql mbstring bcmath
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --quiet --install-dir=/usr/bin \
