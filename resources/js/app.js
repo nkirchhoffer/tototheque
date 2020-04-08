@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import { mapState } from 'vuex'
+import Echo from 'laravel-echo'
+window.io = require('socket.io-client')
 
 import router from './router'
 import store from './store'
@@ -8,6 +10,11 @@ import http from './http'
 import '@fortawesome/fontawesome-free'
 
 import NotificationComponent from './components/NotificationComponent'
+
+window.Echo = new Echo({
+    broadcaster: 'socket.io',
+    host: window.location.hostname + ':6001'
+})
 
 Vue.component('notification', NotificationComponent)
 

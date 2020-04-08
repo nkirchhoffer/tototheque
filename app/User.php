@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->hasMany(VerificationToken::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     /**
      * Retourne si l'utilisateur dispose d'une certaine permission.
      *

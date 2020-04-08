@@ -12,7 +12,10 @@ class BorrowingsController extends Controller
 {
     public function create(Request $request, Replica $replica)
     {
-        $borrowings = $replica->borrowings()->where('starting_at', '!=', null)->where('finished_at', '=', null)->get();
+        $borrowings = $replica->borrowings()
+            ->where('starting_at', '!=', null)
+            ->where('finished_at', '=', null)
+            ->get();
 
         if ($borrowings->count() > 0) {
             return response()->json([

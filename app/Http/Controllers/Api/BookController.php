@@ -4,28 +4,28 @@ namespace App\Http\Controllers\Api;
 
 use App\Book;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Query\Builder;
 
 class BookController extends Controller
 {
-    private $books;
-
-    public function __construct(Book $books)
-    {
-        $this->books = $books;
-    }
 
     public function all()
     {
-        return $this->books->with(['authors', 'categories', 'user'])->orderBy('created_at', 'desc')->get();
+        return Book::select('id', 'title', 'cover_url', 'description')->with(['authors', 'categories', 'user'])->orderBy('created_at', 'desc')->get();
     }
 
     public function get(Book $book)
     {
-        return $this->books->with(['authors', 'replicas.publisher', 'categories', 'user'])->find($book->id);
+        return Book::with(['authors',
+            'replicas.publisher',
+            'reviews.author',
+            'categories',
+            'user'])
+            ->find($book->id);
     }
 
     public function search($search)
     {
-        return $this->books->where('title', 'LIKE', '%'.$search.'%')->get();
+        return Book::where('title', 'LIKE', '%'.$search.'%')->get();
     }
 }

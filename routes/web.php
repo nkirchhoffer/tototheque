@@ -17,10 +17,6 @@ Route::get('/borrowings/cancel/{borrowing}', 'BorrowingsController@cancel')->nam
 
 Route::get('/verification/{VerificationToken}', 'UserController@verify')->name('verification');
 
-Route::get('/test', function () {
-    App\Book::find(1)->getIsBorrowedAttribute();
-});
-
 Route::post('/member/login', 'UserController@login')->name('login');
 
 Route::get('/auth', function () {
@@ -29,15 +25,4 @@ Route::get('/auth', function () {
 
 Route::get('/logout', function () {
     Auth::logout();
-});
-
-Route::get('/mail', function () {
-    $user = App\User::find(3);
-    $token = $user->verificationTokens()->first();
-
-    return new \App\Mail\VerifyMailAddress($token, $user);
-});
-
-Route::get('/demo', function () {
-    return view('demo');
 });

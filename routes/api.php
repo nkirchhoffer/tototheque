@@ -19,6 +19,7 @@ Route::middleware('auth:api')->group(function () {
     });
 
     Route::get('/replicas/borrow/{replica}', 'BorrowingsController@create');
+    Route::post('/book/{book}/review', 'ReviewsController@submit');
 });
 
 Route::post('/login', 'UserController@login');

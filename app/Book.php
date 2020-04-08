@@ -35,12 +35,17 @@ class Book extends Model
         return $this->hasMany(Replica::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function getIsBorrowableAttribute()
     {
         $borrowed = [];
 
         foreach ($this->replicas as $replica) {
-            if ($replica->getIsBorrowedAttribute()) {
+            if ($replica->is_borrowed) {
                 $borrowed[] = $replica;
             }
         }

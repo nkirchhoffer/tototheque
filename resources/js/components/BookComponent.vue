@@ -34,7 +34,7 @@
                     <div class="flex" v-if="!book.is_borrowable"><img class="h-4 mt-1" src="/img/iconfinder_round_red.png"><p class="ml-1">Indisponible</p></div>
 
                     <!--Bouton reservation-->
-                    <button class="bg-gray-600 hover:bg-gray-700 mt-4 text-white font-bold py-2 px-4 rounded">
+                    <button class="bg-gray-600 hover:bg-gray-700 mt-4 text-white font-bold py-2 px-4 rounded" v-if="user !== null" :disbaled="!book.is_borrowable">
                         Reserver l'ouvrage
                     </button>
 
@@ -55,7 +55,9 @@
                         <ul>Paru le {{ date(replica.published_at) }}</ul>
                     </li>
                 </article>
-                <button v-on:click="borrow(replica)" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded h-10 w-full mt-auto mb-auto" :disabled="disabled(replica)">Réserver ce livre</button>
+                <button v-on:click="borrow(replica)" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded h-10 w-full mt-auto mb-auto" :disabled="disabled(replica)">
+                    Réserver ce livre
+                </button>
             </article>
 
         </section>
@@ -71,62 +73,26 @@
             <h1>Avis des lecteurs</h1>
         </section>
 
-        <section class="w-2/4 flex bg-gray-100 rounded overflow-hidden shadow-lg mt-10 mr-auto ml-auto mb-10">
-            <aside class="w-1/5">
-                <img src="/img/avatar_3.png" alt="avatar" class="h-32 mr-auto ml-auto"> <!--Avatar-->
-                <p class="text-center">Jean-Michel</p> <!--Nom utilisateur-->
-                <p class="text-center">Le : 21/03/2020</p> <!--Date du poste-->
-                <li class="flex justify-center p-2"> <!--Note-->
-                    <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
-                    <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
-                    <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
-                    <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
-                    <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
-                </li>
-            </aside>
-            <article class="w-4/5 px-6 py-4">
-                <header class="font-bold text-xl mb-2">Je conseille ce livre</header> <!--Titre avis-->
-                <p class="text-gray-700 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste doloremque facere, harum, sint earum dignissimos culpa, fugit voluptate ex nam asperiores. Doloremque ullam, exercitationem impedit animi ut officia vel esse?</p>
-            </article>
-        </section>
-
-        <section class="w-2/4 flex bg-gray-100 rounded overflow-hidden shadow-lg my-10 mr-auto ml-auto">
-            <aside class="w-1/5">
-                <img src="/img/avatar_5.png" alt="avatar" class="h-32 mr-auto ml-auto"> <!--Avatar-->
-                <p class="text-center">Sandrine</p> <!--Nom d'utilisateur-->
-                <p class="text-center">Le : 20/03/2020</p> <!--Date du poste-->
-                <li class="flex justify-center p-2"> <!--Note-->
-                    <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
-                    <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
-                    <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
-                    <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
-                    <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
-                </li>
-            </aside>
-            <article class="w-4/5 px-6 py-4">
-                <header class="font-bold text-xl mb-2">Super !!!</header> <!--Titre avis-->
-                <p class="text-gray-700 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste doloremque facere, harum, sint earum dignissimos culpa, fugit voluptate ex nam asperiores. Doloremque ullam, exercitationem impedit animi ut officia vel esse?</p>
-            </article>
-        </section>
+        <review v-for="review in book.reviews" :key="review.id" :review="review"></review>
 
         <!--Input Avis-->
-        <section class="w-2/4 ml-auto mr-auto bg-gray-100 overflow-hidden shadow-lg rounded py-2 px-2 mb-12">
+        <section class="w-2/4 ml-auto mr-auto bg-gray-100 overflow-hidden shadow-lg rounded py-2 px-2 mb-12" v-if="user !== null">
             <article class="">
                 <p class="text-2xl my-4">Votre avis</p>
-                <p class="my-2 mx-2">Titre : <input class="bg-white focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4" type="text" placeholder="Titre avis"></p>
-                <input class="bg-white mb-4 focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" type="text" placeholder="Votre avis">
+                <p class="my-2 mx-2">Titre : <input class="bg-white focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4" type="text" v-model="title" placeholder="Titre avis" /></p>
+                <textarea class="bg-white mb-4 focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" type="text" v-model="comment" placeholder="Votre avis"></textarea>
             </article>
 
             <article class="flex mb-16">
                 <p class="ml-2 mt-1">Votre note :</p>
                 <li class="flex p-2"> <!--Note-->
-                    <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
-                    <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
-                    <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
-                    <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
-                    <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
+                    <ul><img class="h-6" id="star-1" src="/img/star_black.png" @mouseover="hover(1)" @mouseout="unhover(1)" v-on:click="note(1)" /></ul>
+                    <ul><img class="h-6" id="star-2" src="/img/star_black.png" @mouseover="hover(2)" @mouseout="unhover(2)" v-on:click="note(2)" /></ul>
+                    <ul><img class="h-6" id="star-3" src="/img/star_black.png" @mouseover="hover(3)" @mouseout="unhover(3)" v-on:click="note(3)" /></ul>
+                    <ul><img class="h-6" id="star-4" src="/img/star_black.png" @mouseover="hover(4)" @mouseout="unhover(4)" v-on:click="note(4)" /></ul>
+                    <ul><img class="h-6" id="star-5" src="/img/star_black.png" @mouseover="hover(5)" @mouseout="unhover(5)" v-on:click="note(5)" /></ul>
                 </li>
-                <button class="bg-blue-500 ml-12 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <button class="bg-blue-500 ml-12 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" v-on:click="submit()">
                     Valider
                 </button>
             </article>
@@ -145,24 +111,35 @@
 <script>
     import http from '../http'
     import moment from 'moment'
+    import { mapState } from 'vuex'
     moment().locale('fr')
+
+    import ReviewComponent from './ReviewComponent'
 
     export default {
         data () {
             return {
                 book: null,
                 cdn: 'https://tototheque.s3.fr-par.scw.cloud/',
+                comment: null,
+                title: null,
+                rate: null,
                 error: null,
                 success: null
             }
         },
 
+        components: {
+            'review': ReviewComponent
+        },
+
         computed: {
-          cover() {
+            cover() {
               if (this.book !== null) {
                   return this.cdn + this.book.cover_url
               }
-          }
+            },
+            ...mapState(['user'])
         },
 
         methods: {
@@ -191,7 +168,7 @@
             },
 
             borrow(replica) {
-                if (!replica.is_borrowed) {
+                if (!replica.is_borrowed && user !== null) {
                     http.get('/replicas/borrow/' + replica.id).then(res => {
                         this.error = null
                         this.success = null
@@ -211,7 +188,52 @@
                     return true
                 }
 
+                if (this.user === null) {
+                    return true
+                }
+
                 return false
+            },
+
+            hover(star) {
+                for (let i = star; i >= 1; i--) {
+                    document.getElementById('star-' + i).src = '/img/star_black_empty.png'
+                }
+            },
+
+            unhover(star) {
+                if (this.rate !== null) {
+                    for (let i = star; i >= 1; i--) {
+                        document.getElementById('star-' + i).src = '/img/star_black.png'
+                    }
+                }
+            },
+
+            note(stars) {
+                this.rate = stars
+
+                for (let i = 0; i <= stars; i++) {
+                    document.getElementById('star-' + i).src = '/img/star_black_empty.png'
+                }
+
+                for (let i = stars; i <= 5; i++) {
+                    console.log(i)
+                    document.getElementById('star-' + i).src = '/img/star_black.png'
+                }
+            },
+
+            submit() {
+                let review = new FormData()
+                review.append('title', this.title)
+                review.append('comment', this.comment)
+                review.append('note', this.rate)
+
+                http.post('/book/' + this.book.id + '/review', review)
+                    .then(res => {
+                        res.json().then(data => {
+                            this.book.reviews.push(data)
+                        })
+                    })
             }
         },
 
@@ -221,9 +243,15 @@
             http.get('/books/' + id).then(res => {
                 res.json().then(data => {
                     this.book = data
-                    console.log(data.replicas)
+
+                    Echo.channel('book.' + this.book.id)
+                        .listen('NewReviewEvent', e => {
+                            const review = e.review
+                            this.book.reviews.push(review)
+                        })
                 })
             })
+
         }
 
     }

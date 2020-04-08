@@ -21,6 +21,8 @@ RUN chown -R www-data:www-data /code
 
 WORKDIR /code
 
+USER www-data
+
 RUN composer.phar install
 RUN npm install
 RUN npm run production
