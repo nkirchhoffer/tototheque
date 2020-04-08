@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Book;
 use App\Http\Controllers\Controller;
-use Illuminate\Database\Query\Builder;
 
 class BookController extends Controller
 {
-
     public function all()
     {
         return Book::select('id', 'title', 'cover_url', 'description')->with(['authors', 'categories', 'user'])->orderBy('created_at', 'desc')->get();
@@ -20,7 +18,7 @@ class BookController extends Controller
             'replicas.publisher',
             'reviews.author',
             'categories',
-            'user'])
+            'user', ])
             ->find($book->id);
     }
 

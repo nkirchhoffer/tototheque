@@ -8,15 +8,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateReviewRequest;
 use App\Review;
 
-class ReviewsController extends Controller {
-
+class ReviewsController extends Controller
+{
     public function submit(CreateReviewRequest $request, Book $book)
     {
         $title = $request->get('title');
         $comment = $request->get('comment');
         $note = $request->get('note');
 
-        $review = new Review;
+        $review = new Review();
         $review->title = $title;
         $review->comment = $comment;
         $review->note = $note;
@@ -28,5 +28,4 @@ class ReviewsController extends Controller {
 
         return $review->load(['author']);
     }
-
 }
