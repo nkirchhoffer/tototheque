@@ -49,6 +49,7 @@ class ValidatedBorrowingNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage())
+                    ->from('contact@nkir.ch')
                     ->subject('Votre emprunt a été validé')
                     ->line('Votre emprunt de **'.$this->borrowing->replica->book->title.'** a été validé.')
                     ->line('Vous êtes invité à venir retirer le livre dès le **'.$this->borrowing->starting_at->locale('fr_FR')->isoFormat('LL').' à 14h00**.')

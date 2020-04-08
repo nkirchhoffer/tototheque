@@ -49,6 +49,7 @@ class CancelledBorrowingNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage())
+                    ->from('contact@nkir.ch')
                     ->subject('Concernant votre emprunt')
                     ->greeting('Cher(e) '.$notifiable->name.',')
                     ->line('Votre emprunt du livre **'.$this->borrowing->replica->book->title.'** a été annulé.')

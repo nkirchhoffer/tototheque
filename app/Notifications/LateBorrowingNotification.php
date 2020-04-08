@@ -54,6 +54,7 @@ class LateBorrowingNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage())
+                    ->from('contact@nkir.ch')
                     ->subject('Retard de votre emprunt')
                     ->greeting('Cher(e) '.$notifiable->name.',')
                     ->line('Votre emprunt du livre **'.$this->borrowing->replica->book->title.'** accuse un retard de '.$this->late().'.')

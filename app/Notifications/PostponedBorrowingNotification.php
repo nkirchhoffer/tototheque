@@ -47,6 +47,7 @@ class PostponedBorrowingNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage())
+                    ->from('contact@nkir.ch')
                     ->subject('Prolongation de votre emprunt')
                     ->greeting('Cher(e) '.$notifiable->name.',')
                     ->line('Votre date de rendu pour l\'emprunt de **'.$this->borrowing->replica->book->title.'** a été reportée au **'.$this->borrowing->finishing_at->locale('fr_FR')->isoFormat('LL').' à 20h00**.')

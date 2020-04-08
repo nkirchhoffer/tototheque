@@ -48,6 +48,7 @@ class ConfirmedBorrowingNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage())
+            ->from('contact@nkir.ch')
             ->subject('Confirmation de votre emprunt')
             ->greeting('Cher(e) '.$notifiable->name.',')
             ->line('Nous avons bien reçu votre demande d\'emprunt de **'.$this->borrowing->replica->book->title.'**.')
