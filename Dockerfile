@@ -25,4 +25,6 @@ RUN composer.phar install
 RUN npm install
 RUN npm run production
 
+RUN php artisan passport:keys
+
 CMD ["php-fpm"]
