@@ -25,4 +25,4 @@ RUN composer.phar install
 RUN npm install
 RUN npm run production
 
-CMD ["php artisan migrate && php artisan db:seed && php-fpm"]
+CMD ["php-fpm"]

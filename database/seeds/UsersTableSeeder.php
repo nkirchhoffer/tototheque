@@ -21,14 +21,5 @@ class UsersTableSeeder extends Seeder
             'created_at'   => now(),
             'updated_at'   => now(),
         ]);
-
-        DB::table('users')->insert([
-            'name'       => 'To To',
-            'nick'       => 'toto',
-            'email'      => 'toto@gmail.com',
-            'password'   => bcrypt('totototo'),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
     }
 }
