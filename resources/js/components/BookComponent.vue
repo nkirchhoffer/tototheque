@@ -168,7 +168,7 @@
             },
 
             borrow(replica) {
-                if (!replica.is_borrowed && user !== null) {
+                if (!replica.is_borrowed && this.user !== null) {
                     http.get('/replicas/borrow/' + replica.id).then(res => {
                         this.error = null
                         this.success = null
