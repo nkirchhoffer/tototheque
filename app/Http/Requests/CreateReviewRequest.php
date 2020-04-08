@@ -26,7 +26,7 @@ class CreateReviewRequest extends FormRequest
         return [
             'title'   => 'required|max:100',
             'comment' => 'required|min:20',
-            'note'    => 'required|numeric|min:1|max:5'
+            'note'    => 'required|numeric|min:1|max:5',
         ];
     }
 }
