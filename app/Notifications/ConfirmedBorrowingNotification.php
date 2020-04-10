@@ -17,9 +17,10 @@ class ConfirmedBorrowingNotification extends Notification implements ShouldQueue
     private $borrowing;
 
     /**
-     * Créer une instance de ConfirmedBorowwoingNotification
+     * Créer une instance de ConfirmedBorowwoingNotification.
      *
      * @param Borrowing $borrowing
+     *
      * @return void
      */
     public function __construct(Borrowing $borrowing)
