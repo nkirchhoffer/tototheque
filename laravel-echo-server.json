@@ -1,5 +1,5 @@
 {
-	"authHost": "http://localhost",
+	"authHost": "http://tut.nkir.ch",
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [],
 	"database": "redis",

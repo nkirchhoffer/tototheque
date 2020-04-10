@@ -21,6 +21,8 @@ RUN chown -R www-data:www-data /code
 
 WORKDIR /code
 
+RUN npm i -g laravel-echo-server
+
 RUN composer.phar install
 RUN npm install
 RUN npm run production
