@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'HomeController@index')->name('admin.index');
+Route::get('/', 'RolesController@index')->name('admin.roles.index');
 
-Route::get('/roles', 'RolesController@index')->name('admin.roles.index');
+//Route::get('/roles', 'RolesController@index')->name('admin.roles.index');
 Route::get('/permissions/assign', 'PermissionsController@index')->name('admin.perms.assign');
 Route::get('/roles/create', 'RolesController@new')->name('admin.perms.roles');
 Route::get('/users/roles', 'RolesController@users')->name('admin.perms.assign');

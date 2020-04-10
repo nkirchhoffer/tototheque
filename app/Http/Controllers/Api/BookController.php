@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Author;
 use App\Book;
+use App\Category;
 use App\Http\Controllers\Controller;
 
 class BookController extends Controller
@@ -22,8 +24,18 @@ class BookController extends Controller
             ->find($book->id);
     }
 
-    public function search($search)
+    public function author(Author $author)
     {
-        return Book::where('title', 'LIKE', '%'.$search.'%')->get();
+        return $author->load(['books.categories']);
+    }
+
+    public function category(Category $category)
+    {
+        return $category->load(['books.authors']);
+    }
+
+    public function search(string $search)
+    {
+        return Book::with(['authors', 'categories'])->where('title', 'LIKE', '%'.$search.'%')->get();
     }
 }

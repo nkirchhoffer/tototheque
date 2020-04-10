@@ -1,7 +1,6 @@
 <template>
-    <section class="search">
+    <section class="author">
         <h1 class="text-3xl text-gray-700">{{ title }}</h1>
-        <notification type="error" class="mt-4" v-if="books == null">Aucun résultat ne correspond à cette recherche.</notification>
         <section class="grid grid-cols-3 gap-4 my-4">
             <!--Présentation de livre-->
             <article class="book max-w-sm rounded overflow-hidden shadow-lg" v-for="book in books" :key="book.id">
@@ -14,7 +13,7 @@
                 </div>
                 <footer class="flex px-6 py-4 bg-gray-300">
                   <span class="button">
-                    <img class="flex w-6 mr-2" src="/img/iconfinder_star_1054969.png">{{ fullname(book.authors[0]) }}
+                    <img class="flex w-6 mr-2" src="/img/iconfinder_star_1054969.png">{{ fullname }}
                   </span>
                     <span class="button" >
                         <img class="flex w-6 mr-2" src="/img/iconfinder_heart_1055045.png">{{ book.categories[0].name }}
@@ -32,17 +31,22 @@
         data() {
             return {
                 books: null,
-                searchText: null
+                authorID: null,
+                author: null
             }
         },
 
         computed: {
             title() {
-                if (this.searchText !== null) {
-                    return 'Résultats pour "' + this.searchText + '"'
+                if (this.author !== null) {
+                    return 'Livres de ' + this.author.firstname + ' ' + this.author.lastname.toUpperCase()
                 }
 
                 return 'Chargement en cours...'
+            },
+
+            fullname() {
+                return this.author.firstname + ' ' + this.author.lastname.toUpperCase()
             }
         },
 
@@ -50,17 +54,14 @@
             cover(path) {
                 return 'https://tototheque.s3.fr-par.scw.cloud/' + path
             },
-
-            fullname(author) {
-                return author.firstname + ' ' + author.lastname.toUpperCase()
-            },
         },
 
         mounted() {
-            this.searchText = this.$route.params.search
-            http.get('/search/' + this.searchText).then(res => {
+            this.authorID = this.$route.params.author
+            http.get('/authors/' + this.authorID).then(res => {
                 res.json().then(data => {
-                    this.books = data
+                    this.books = data.books
+                    this.author = data
                 })
             })
         }

@@ -1,15 +1,10 @@
 <template>
-    <section class="w-2/4 flex bg-gray-100 rounded overflow-hidden shadow-lg my-10 mr-auto ml-auto">
-        <aside class="w-1/5">
-            <img src="/img/avatar_5.png" alt="avatar" class="h-32 mr-auto ml-auto"> <!--Avatar-->
-            <p class="text-center">{{ review.author.name }}</p> <!--Nom d'utilisateur-->
-            <p class="text-center">Le : {{ date }}</p> <!--Date du poste-->
+    <section class="lg:w-1/2 md:w-5/6 flex bg-gray-100 rounded overflow-hidden shadow-lg mt-10 mr-auto ml-auto mb-10">
+        <aside class="lg:w-1/5 md:w-1/5 sm:w-1/4 bg-gray-200">
+            <p class="text-center text-xl text-gray-900 mt-4">{{ review.author.name }}</p> <!--Nom d'utilisateur-->
+            <p class="text-center">{{ date }}</p> <!--Date du poste-->
             <li class="flex justify-center p-2"> <!--Note-->
-                <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
-                <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
-                <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
-                <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
-                <ul><img class="h-6" src="/img/star_black.png" onmouseover="this.src='/img/star_black_empty.png'" onmouseout="this.src='/img/star_black.png'"></ul>
+                <ul v-for="note in notes"><img class="h-6" :src="star(note)"></ul>
             </li>
         </aside>
         <article class="w-4/5 px-6 py-4">
@@ -26,10 +21,40 @@
     export default {
         props: ['review'],
 
+        data() {
+            return {
+                notes: [
+                    false,
+                    false,
+                    false,
+                    false,
+                    false
+                ]
+            }
+        },
+
         computed: {
             date() {
                 return moment(this.review.created_at).format('L')
             }
+        },
+
+        methods: {
+            star(note) {
+                if (note) {
+                    return '/img/star_black_empty.png'
+                }
+
+                return '/img/star_black.png'
+            }
+        },
+
+        beforeMount() {
+            for (let i = 0; i < this.review.note; i++) {
+                this.notes[i] = true
+            }
         }
+
+
     }
 </script>

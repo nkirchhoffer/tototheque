@@ -30,14 +30,14 @@ new Vue({
         },
 
         search() {
-            let search = encodeURI(this.search)
-            this.$router.push({ name: 'search', params: {search: search} })
+            let searchURI = encodeURI(this.searchText)
+            this.$router.push({ name: 'search', params: {search: searchURI} })
         }
     },
 
     data() {
       return {
-          search: null
+          searchText: null
       }
     },
 

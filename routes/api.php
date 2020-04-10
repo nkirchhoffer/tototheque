@@ -20,6 +20,7 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/replicas/borrow/{replica}', 'BorrowingsController@create');
     Route::post('/book/{book}/review', 'ReviewsController@submit');
+    Route::get('/books/{book}/borrow', 'BorrowingsController@createBook');
 });
 
 Route::post('/login', 'UserController@login');
@@ -27,3 +28,6 @@ Route::post('/register', 'UserController@register');
 
 Route::get('/books', 'BookController@all');
 Route::get('/books/{book}', 'BookController@get');
+Route::get('/search/{search}', 'BookController@search');
+Route::get('/authors/{author}', 'BookController@author');
+Route::get('/categories/{category}', 'BookController@category');

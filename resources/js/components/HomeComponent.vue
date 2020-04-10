@@ -1,8 +1,6 @@
 <template>
   <section class="home-page">
-
-
-    <section id="element" class="md:flex rounded overflow-hidden shadow-lg mt-10 ml-10 mr-auto ml-auto mb-10">
+    <section id="element" v-if="false" class="md:flex rounded overflow-hidden shadow-lg mt-10 ml-10 mr-auto ml-auto mb-10">
       <img class="w-64" src="/img/img1.jpg">
       <article class="px-6 py-4">
         <header class="font-bold text-xl mb-2">La sélection de l'équipe</header>
@@ -33,7 +31,7 @@
       </aside>
     </section>
 
-    <section class="grid grid-cols-3 gap-4 my-4">
+    <section class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 my-4 justify-center">
       <!--Présentation de livre-->
 
       <article class="book max-w-sm rounded overflow-hidden shadow-lg" v-for="book in books" :key="book.id">
@@ -45,16 +43,12 @@
           >{{ book.description }}</p>
         </div>
         <footer class="flex px-6 py-4 bg-gray-300">
-          <span
-                  class="button"
-          >
+          <router-link tag="span" :to="{ name: 'author', params: {author: book.authors[0].id}}" class="button">
             <img class="flex w-6 mr-2" src="/img/iconfinder_star_1054969.png">{{ fullname(book.authors[0]) }}
-          </span>
-          <span
-                  class="button"
-          >
+          </router-link>
+          <router-link tag="span" :to="{name: 'category', params: {category: book.categories[0].id}}" class="button">
             <img class="flex w-6 mr-2" src="/img/iconfinder_heart_1055045.png">{{ book.categories[0].name }}
-          </span>
+          </router-link>
         </footer>
       </article>
     </section>
