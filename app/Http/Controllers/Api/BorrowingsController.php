@@ -35,10 +35,11 @@ class BorrowingsController extends Controller
         ];
     }
 
-    public function createBook(Request $request, Book $book) {
+    public function createBook(Request $request, Book $book)
+    {
         if (!$book->is_borrowable) {
             return response()->json([
-                'message' => 'Ce livre est déjà emprunté.'
+                'message' => 'Ce livre est déjà emprunté.',
             ], 401);
         }
 
@@ -62,8 +63,8 @@ class BorrowingsController extends Controller
         $request->user()->notify(new ConfirmedBorrowingNotification($borrowing));
 
         return [
-            'status' => 200,
-            'message' => 'L\'emprunt a bien été confirmé, un mail récapitulatif vous a été envoyé.'
+            'status'  => 200,
+            'message' => 'L\'emprunt a bien été confirmé, un mail récapitulatif vous a été envoyé.',
         ];
     }
 }
