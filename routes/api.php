@@ -26,7 +26,7 @@ Route::middleware('auth:api')->group(function () {
 Route::post('/login', 'UserController@login');
 Route::post('/register', 'UserController@register');
 
-Route::get('/books', 'BookController@all');
+Route::get('/books', 'BookController@fetch');
 Route::get('/books/{book}', 'BookController@get');
 Route::get('/search/{search}', 'BookController@search');
 Route::get('/authors/{author}', 'BookController@author');

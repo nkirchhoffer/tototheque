@@ -31,7 +31,7 @@
       </aside>
     </section>
 
-    <section class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 my-4 justify-center">
+    <section class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 my-4 justify-center" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="20">
       <!--Présentation de livre-->
 
       <article class="book max-w-sm rounded overflow-hidden shadow-lg" v-for="book in books" :key="book.id">
@@ -83,7 +83,9 @@ import http from '../http'
 export default {
   data() {
     return {
-      books: []
+      books: [],
+      offset: 0,
+      fullyLoaded: false
     }
   },
 
@@ -95,14 +97,26 @@ export default {
     fullname(author) {
       return author.firstname + ' ' + author.lastname.toUpperCase()
     },
-  },
 
-  mounted() {
-    http.get('/books').then(res => {
-      res.json().then(data => {
-        this.books = data
-      })
-    })
+    loadMore() {
+      this.$Progress.start()
+
+      if (!this.fullyLoaded) {
+        http.get('/books?offset=' + this.offset + '&limit=9').then(res => {
+          res.json().then(data => {
+            if (data.length === 0) {
+              this.fullyLoaded = true
+              this.$Progress.finish()
+            } else {
+              this.books = this.books.concat(data)
+              this.$Progress.finish()
+            }
+          })
+        })
+
+        this.offset += 9
+      }
+    }
   }
 }
 </script>

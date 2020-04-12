@@ -3175,7 +3175,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      books: []
+      books: [],
+      offset: 0,
+      fullyLoaded: false
     };
   },
   methods: {
@@ -3184,16 +3186,29 @@ __webpack_require__.r(__webpack_exports__);
     },
     fullname: function fullname(author) {
       return author.firstname + ' ' + author.lastname.toUpperCase();
-    }
-  },
-  mounted: function mounted() {
-    var _this = this;
+    },
+    loadMore: function loadMore() {
+      var _this = this;
 
-    _http__WEBPACK_IMPORTED_MODULE_0__["default"].get('/books').then(function (res) {
-      res.json().then(function (data) {
-        _this.books = data;
-      });
-    });
+      this.$Progress.start();
+
+      if (!this.fullyLoaded) {
+        _http__WEBPACK_IMPORTED_MODULE_0__["default"].get('/books?offset=' + this.offset + '&limit=9').then(function (res) {
+          res.json().then(function (data) {
+            if (data.length === 0) {
+              _this.fullyLoaded = true;
+
+              _this.$Progress.finish();
+            } else {
+              _this.books = _this.books.concat(data);
+
+              _this.$Progress.finish();
+            }
+          });
+        });
+        this.offset += 9;
+      }
+    }
   }
 });
 
@@ -34018,6 +34033,250 @@ function toArray(list, index) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-infinite-scroll/vue-infinite-scroll.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/vue-infinite-scroll/vue-infinite-scroll.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function (global, factory) {
+   true ? module.exports = factory() :
+  undefined;
+}(this, function () { 'use strict';
+
+  var ctx = '@@InfiniteScroll';
+
+  var throttle = function throttle(fn, delay) {
+    var now, lastExec, timer, context, args; //eslint-disable-line
+
+    var execute = function execute() {
+      fn.apply(context, args);
+      lastExec = now;
+    };
+
+    return function () {
+      context = this;
+      args = arguments;
+
+      now = Date.now();
+
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+      }
+
+      if (lastExec) {
+        var diff = delay - (now - lastExec);
+        if (diff < 0) {
+          execute();
+        } else {
+          timer = setTimeout(function () {
+            execute();
+          }, diff);
+        }
+      } else {
+        execute();
+      }
+    };
+  };
+
+  var getScrollTop = function getScrollTop(element) {
+    if (element === window) {
+      return Math.max(window.pageYOffset || 0, document.documentElement.scrollTop);
+    }
+
+    return element.scrollTop;
+  };
+
+  var getComputedStyle = document.defaultView.getComputedStyle;
+
+  var getScrollEventTarget = function getScrollEventTarget(element) {
+    var currentNode = element;
+    // bugfix, see http://w3help.org/zh-cn/causes/SD9013 and http://stackoverflow.com/questions/17016740/onscroll-function-is-not-working-for-chrome
+    while (currentNode && currentNode.tagName !== 'HTML' && currentNode.tagName !== 'BODY' && currentNode.nodeType === 1) {
+      var overflowY = getComputedStyle(currentNode).overflowY;
+      if (overflowY === 'scroll' || overflowY === 'auto') {
+        return currentNode;
+      }
+      currentNode = currentNode.parentNode;
+    }
+    return window;
+  };
+
+  var getVisibleHeight = function getVisibleHeight(element) {
+    if (element === window) {
+      return document.documentElement.clientHeight;
+    }
+
+    return element.clientHeight;
+  };
+
+  var getElementTop = function getElementTop(element) {
+    if (element === window) {
+      return getScrollTop(window);
+    }
+    return element.getBoundingClientRect().top + getScrollTop(window);
+  };
+
+  var isAttached = function isAttached(element) {
+    var currentNode = element.parentNode;
+    while (currentNode) {
+      if (currentNode.tagName === 'HTML') {
+        return true;
+      }
+      if (currentNode.nodeType === 11) {
+        return false;
+      }
+      currentNode = currentNode.parentNode;
+    }
+    return false;
+  };
+
+  var doBind = function doBind() {
+    if (this.binded) return; // eslint-disable-line
+    this.binded = true;
+
+    var directive = this;
+    var element = directive.el;
+
+    var throttleDelayExpr = element.getAttribute('infinite-scroll-throttle-delay');
+    var throttleDelay = 200;
+    if (throttleDelayExpr) {
+      throttleDelay = Number(directive.vm[throttleDelayExpr] || throttleDelayExpr);
+      if (isNaN(throttleDelay) || throttleDelay < 0) {
+        throttleDelay = 200;
+      }
+    }
+    directive.throttleDelay = throttleDelay;
+
+    directive.scrollEventTarget = getScrollEventTarget(element);
+    directive.scrollListener = throttle(doCheck.bind(directive), directive.throttleDelay);
+    directive.scrollEventTarget.addEventListener('scroll', directive.scrollListener);
+
+    this.vm.$on('hook:beforeDestroy', function () {
+      directive.scrollEventTarget.removeEventListener('scroll', directive.scrollListener);
+    });
+
+    var disabledExpr = element.getAttribute('infinite-scroll-disabled');
+    var disabled = false;
+
+    if (disabledExpr) {
+      this.vm.$watch(disabledExpr, function (value) {
+        directive.disabled = value;
+        if (!value && directive.immediateCheck) {
+          doCheck.call(directive);
+        }
+      });
+      disabled = Boolean(directive.vm[disabledExpr]);
+    }
+    directive.disabled = disabled;
+
+    var distanceExpr = element.getAttribute('infinite-scroll-distance');
+    var distance = 0;
+    if (distanceExpr) {
+      distance = Number(directive.vm[distanceExpr] || distanceExpr);
+      if (isNaN(distance)) {
+        distance = 0;
+      }
+    }
+    directive.distance = distance;
+
+    var immediateCheckExpr = element.getAttribute('infinite-scroll-immediate-check');
+    var immediateCheck = true;
+    if (immediateCheckExpr) {
+      immediateCheck = Boolean(directive.vm[immediateCheckExpr]);
+    }
+    directive.immediateCheck = immediateCheck;
+
+    if (immediateCheck) {
+      doCheck.call(directive);
+    }
+
+    var eventName = element.getAttribute('infinite-scroll-listen-for-event');
+    if (eventName) {
+      directive.vm.$on(eventName, function () {
+        doCheck.call(directive);
+      });
+    }
+  };
+
+  var doCheck = function doCheck(force) {
+    var scrollEventTarget = this.scrollEventTarget;
+    var element = this.el;
+    var distance = this.distance;
+
+    if (force !== true && this.disabled) return; //eslint-disable-line
+    var viewportScrollTop = getScrollTop(scrollEventTarget);
+    var viewportBottom = viewportScrollTop + getVisibleHeight(scrollEventTarget);
+
+    var shouldTrigger = false;
+
+    if (scrollEventTarget === element) {
+      shouldTrigger = scrollEventTarget.scrollHeight - viewportBottom <= distance;
+    } else {
+      var elementBottom = getElementTop(element) - getElementTop(scrollEventTarget) + element.offsetHeight + viewportScrollTop;
+
+      shouldTrigger = viewportBottom + distance >= elementBottom;
+    }
+
+    if (shouldTrigger && this.expression) {
+      this.expression();
+    }
+  };
+
+  var InfiniteScroll = {
+    bind: function bind(el, binding, vnode) {
+      el[ctx] = {
+        el: el,
+        vm: vnode.context,
+        expression: binding.value
+      };
+      var args = arguments;
+      el[ctx].vm.$on('hook:mounted', function () {
+        el[ctx].vm.$nextTick(function () {
+          if (isAttached(el)) {
+            doBind.call(el[ctx], args);
+          }
+
+          el[ctx].bindTryCount = 0;
+
+          var tryBind = function tryBind() {
+            if (el[ctx].bindTryCount > 10) return; //eslint-disable-line
+            el[ctx].bindTryCount++;
+            if (isAttached(el)) {
+              doBind.call(el[ctx], args);
+            } else {
+              setTimeout(tryBind, 50);
+            }
+          };
+
+          tryBind();
+        });
+      });
+    },
+    unbind: function unbind(el) {
+      if (el && el[ctx] && el[ctx].scrollEventTarget) el[ctx].scrollEventTarget.removeEventListener('scroll', el[ctx].scrollListener);
+    }
+  };
+
+  var install = function install(Vue) {
+    Vue.directive('InfiniteScroll', InfiniteScroll);
+  };
+
+  if (window.Vue) {
+    window.infiniteScroll = InfiniteScroll;
+    Vue.use(install); // eslint-disable-line
+  }
+
+  InfiniteScroll.install = install;
+
+  return InfiniteScroll;
+
+}));
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AuthorComponent.vue?vue&type=template&id=77b2e9d2&":
 /*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AuthorComponent.vue?vue&type=template&id=77b2e9d2& ***!
@@ -34680,8 +34939,20 @@ var render = function() {
     _c(
       "section",
       {
+        directives: [
+          {
+            name: "infinite-scroll",
+            rawName: "v-infinite-scroll",
+            value: _vm.loadMore,
+            expression: "loadMore"
+          }
+        ],
         staticClass:
-          "grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 my-4 justify-center"
+          "grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 my-4 justify-center",
+        attrs: {
+          "infinite-scroll-disabled": "busy",
+          "infinite-scroll-distance": "20"
+        }
       },
       _vm._l(_vm.books, function(book) {
         return _c(
@@ -35710,6 +35981,18 @@ function normalizeComponent (
     options: options
   }
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-progressbar/dist/vue-progressbar.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/vue-progressbar/dist/vue-progressbar.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(t,o){ true?module.exports=o():undefined}(this,function(){"use strict";!function(){if("undefined"!=typeof document){var t=document.head||document.getElementsByTagName("head")[0],o=document.createElement("style"),i=" .__cov-progress { opacity: 1; z-index: 999999; } ";o.type="text/css",o.styleSheet?o.styleSheet.cssText=i:o.appendChild(document.createTextNode(i)),t.appendChild(o)}}();var t="undefined"!=typeof window,r={render:function(){var t=this,o=t.$createElement;return(t._self._c||o)("div",{staticClass:"__cov-progress",style:t.style})},staticRenderFns:[],name:"VueProgress",serverCacheKey:function(){return"Progress"},computed:{style:function(){var t=this.progress,o=t.options,i=!!o.show,e=o.location,s={"background-color":o.canSuccess?o.color:o.failedColor,opacity:o.show?1:0,position:o.position};return"top"===e||"bottom"===e?("top"===e?s.top="0px":s.bottom="0px",o.inverse?s.right="0px":s.left="0px",s.width=t.percent+"%",s.height=o.thickness,s.transition=(i?"width "+o.transition.speed+", ":"")+"opacity "+o.transition.opacity):"left"!==e&&"right"!==e||("left"===e?s.left="0px":s.right="0px",o.inverse?s.top="0px":s.bottom="0px",s.height=t.percent+"%",s.width=o.thickness,s.transition=(i?"height "+o.transition.speed+", ":"")+"opacity "+o.transition.opacity),s},progress:function(){return t?window.VueProgressBarEventBus.RADON_LOADING_BAR:{percent:0,options:{canSuccess:!0,show:!1,color:"rgb(19, 91, 55)",failedColor:"red",thickness:"2px",transition:{speed:"0.2s",opacity:"0.6s",termination:300},location:"top",autoRevert:!0,inverse:!1}}}}};return{install:function(o){var t=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{},i=(o.version.split(".")[0],"undefined"!=typeof window),e={$vm:null,state:{tFailColor:"",tColor:"",timer:null,cut:0},init:function(t){this.$vm=t},start:function(t){var o=this;this.$vm&&(t||(t=3e3),this.$vm.RADON_LOADING_BAR.percent=0,this.$vm.RADON_LOADING_BAR.options.show=!0,this.$vm.RADON_LOADING_BAR.options.canSuccess=!0,this.state.cut=1e4/Math.floor(t),clearInterval(this.state.timer),this.state.timer=setInterval(function(){o.increase(o.state.cut*Math.random()),95<o.$vm.RADON_LOADING_BAR.percent&&o.$vm.RADON_LOADING_BAR.options.autoFinish&&o.finish()},100))},set:function(t){this.$vm.RADON_LOADING_BAR.options.show=!0,this.$vm.RADON_LOADING_BAR.options.canSuccess=!0,this.$vm.RADON_LOADING_BAR.percent=Math.floor(t)},get:function(){return Math.floor(this.$vm.RADON_LOADING_BAR.percent)},increase:function(t){this.$vm.RADON_LOADING_BAR.percent=Math.min(99,this.$vm.RADON_LOADING_BAR.percent+Math.floor(t))},decrease:function(t){this.$vm.RADON_LOADING_BAR.percent=this.$vm.RADON_LOADING_BAR.percent-Math.floor(t)},hide:function(){var t=this;clearInterval(this.state.timer),this.state.timer=null,setTimeout(function(){t.$vm.RADON_LOADING_BAR.options.show=!1,o.nextTick(function(){setTimeout(function(){t.$vm.RADON_LOADING_BAR.percent=0},100),t.$vm.RADON_LOADING_BAR.options.autoRevert&&setTimeout(function(){t.revert()},300)})},this.$vm.RADON_LOADING_BAR.options.transition.termination)},pause:function(){clearInterval(this.state.timer)},finish:function(){this.$vm&&(this.$vm.RADON_LOADING_BAR.percent=100,this.hide())},fail:function(){this.$vm.RADON_LOADING_BAR.options.canSuccess=!1,this.$vm.RADON_LOADING_BAR.percent=100,this.hide()},setFailColor:function(t){this.$vm.RADON_LOADING_BAR.options.failedColor=t},setColor:function(t){this.$vm.RADON_LOADING_BAR.options.color=t},setLocation:function(t){this.$vm.RADON_LOADING_BAR.options.location=t},setTransition:function(t){this.$vm.RADON_LOADING_BAR.options.transition=t},tempFailColor:function(t){this.state.tFailColor=this.$vm.RADON_LOADING_BAR.options.failedColor,this.$vm.RADON_LOADING_BAR.options.failedColor=t},tempColor:function(t){this.state.tColor=this.$vm.RADON_LOADING_BAR.options.color,this.$vm.RADON_LOADING_BAR.options.color=t},tempLocation:function(t){this.state.tLocation=this.$vm.RADON_LOADING_BAR.options.location,this.$vm.RADON_LOADING_BAR.options.location=t},tempTransition:function(t){this.state.tTransition=this.$vm.RADON_LOADING_BAR.options.transition,this.$vm.RADON_LOADING_BAR.options.transition=t},revertColor:function(){this.$vm.RADON_LOADING_BAR.options.color=this.state.tColor,this.state.tColor=""},revertFailColor:function(){this.$vm.RADON_LOADING_BAR.options.failedColor=this.state.tFailColor,this.state.tFailColor=""},revertLocation:function(){this.$vm.RADON_LOADING_BAR.options.location=this.state.tLocation,this.state.tLocation=""},revertTransition:function(){this.$vm.RADON_LOADING_BAR.options.transition=this.state.tTransition,this.state.tTransition={}},revert:function(){this.$vm.RADON_LOADING_BAR.options.autoRevert&&(this.state.tColor&&this.revertColor(),this.state.tFailColor&&this.revertFailColor(),this.state.tLocation&&this.revertLocation(),!this.state.tTransition||void 0===this.state.tTransition.speed&&void 0===this.state.tTransition.opacity||this.revertTransition())},parseMeta:function(t){for(var o in t.func){var i=t.func[o];switch(i.call){case"color":switch(i.modifier){case"set":this.setColor(i.argument);break;case"temp":this.tempColor(i.argument)}break;case"fail":switch(i.modifier){case"set":this.setFailColor(i.argument);break;case"temp":this.tempFailColor(i.argument)}break;case"location":switch(i.modifier){case"set":this.setLocation(i.argument);break;case"temp":this.tempLocation(i.argument)}break;case"transition":switch(i.modifier){case"set":this.setTransition(i.argument);break;case"temp":this.tempTransition(i.argument)}}}}},s=function(t,o){for(var i,e,s=1;s<arguments.length;++s)for(i in e=arguments[s])Object.prototype.hasOwnProperty.call(e,i)&&(t[i]=e[i]);return t}({canSuccess:!0,show:!1,color:"#73ccec",position:"fixed",failedColor:"red",thickness:"2px",transition:{speed:"0.2s",opacity:"0.6s",termination:300},autoRevert:!0,location:"top",inverse:!1,autoFinish:!0},t),n=new o({data:{RADON_LOADING_BAR:{percent:0,options:s}}});i&&(window.VueProgressBarEventBus=n,e.init(n)),o.component("vue-progress-bar",r),o.prototype.$Progress=e}}});
 
 
 /***/ }),
@@ -52391,13 +52674,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router */ "./resources/js/router.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
-/* harmony import */ var _http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./http */ "./resources/js/http.js");
-/* harmony import */ var _fortawesome_fontawesome_free__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/fontawesome-free */ "./node_modules/@fortawesome/fontawesome-free/js/fontawesome.js");
-/* harmony import */ var _fortawesome_fontawesome_free__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _components_NotificationComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/NotificationComponent */ "./resources/js/components/NotificationComponent.vue");
+/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-progressbar */ "./node_modules/vue-progressbar/dist/vue-progressbar.js");
+/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_progressbar__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue_infinite_scroll__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-infinite-scroll */ "./node_modules/vue-infinite-scroll/vue-infinite-scroll.js");
+/* harmony import */ var vue_infinite_scroll__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_infinite_scroll__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./router */ "./resources/js/router.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
+/* harmony import */ var _http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./http */ "./resources/js/http.js");
+/* harmony import */ var _fortawesome_fontawesome_free__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @fortawesome/fontawesome-free */ "./node_modules/@fortawesome/fontawesome-free/js/fontawesome.js");
+/* harmony import */ var _fortawesome_fontawesome_free__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _components_NotificationComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/NotificationComponent */ "./resources/js/components/NotificationComponent.vue");
+
+
 
 
 
@@ -52407,14 +52696,25 @@ window.io = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.i
 
 
 
-window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_2__["default"]({
+window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_4__["default"]({
   broadcaster: 'socket.io',
   host: window.location.hostname + ':6001'
 });
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('notification', _components_NotificationComponent__WEBPACK_IMPORTED_MODULE_7__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_2___default.a, {
+  color: '#bffaf3',
+  failedColor: '#874b4b',
+  thickness: '3px',
+  transition: {
+    speed: '0.2s',
+    opacity: '0.6s',
+    termination: 300
+  }
+});
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_infinite_scroll__WEBPACK_IMPORTED_MODULE_3___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('notification', _components_NotificationComponent__WEBPACK_IMPORTED_MODULE_9__["default"]);
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
-  router: _router__WEBPACK_IMPORTED_MODULE_3__["default"],
-  store: _store__WEBPACK_IMPORTED_MODULE_4__["default"],
+  router: _router__WEBPACK_IMPORTED_MODULE_5__["default"],
+  store: _store__WEBPACK_IMPORTED_MODULE_6__["default"],
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(['user']),
   methods: {
     logout: function logout() {
@@ -52437,6 +52737,19 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   },
   mounted: function mounted() {
     this.$store.dispatch('fetchUser');
+  },
+  created: function created() {
+    var _this = this;
+
+    this.$Progress.start();
+    this.$router.beforeEach(function (to, from, next) {
+      _this.$Progress.start();
+
+      next();
+    });
+    this.$router.afterEach(function (to, from) {
+      return _this.$Progress.finish();
+    });
   }
 }).$mount('#app');
 

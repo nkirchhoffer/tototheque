@@ -6,12 +6,21 @@ use App\Author;
 use App\Book;
 use App\Category;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function all()
+    public function fetch(Request $request)
     {
-        return Book::select('id', 'title', 'cover_url', 'description')->with(['authors', 'categories', 'user'])->orderBy('created_at', 'desc')->get();
+        $offset = $request->get('offset');
+        $limit = $request->get('limit');
+
+        return Book::select('id', 'title', 'cover_url', 'description')
+            ->with(['authors', 'categories', 'user'])
+            ->orderBy('created_at', 'desc')
+            ->skip($offset)
+            ->take($limit)
+            ->get();
     }
 
     public function get(Book $book)
@@ -29,13 +38,26 @@ class BookController extends Controller
         return $author->load(['books.categories']);
     }
 
-    public function category(Category $category)
+    public function category(Request $request, Category $category)
     {
-        return $category->load(['books.authors']);
+        $offset = $request->get('offset');
+        $limit = $request->get('limit');
+
+        return [
+            'category' => $category,
+            'books'    => $category->books()->skip($offset)->take($limit)->with(['authors'])->get(),
+        ];
     }
 
-    public function search(string $search)
+    public function search(Request $request, string $search)
     {
-        return Book::with(['authors', 'categories'])->where('title', 'LIKE', '%'.$search.'%')->get();
+        $offset = $request->get('offset');
+        $limit = $request->get('limit');
+
+        return Book::with(['authors', 'categories'])
+            ->where('title', 'LIKE', '%'.$search.'%')
+            ->skip($offset)
+            ->take($limit)
+            ->get();
     }
 }
